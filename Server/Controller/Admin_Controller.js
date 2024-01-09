@@ -3,6 +3,8 @@ const Contact = require('../Model/Contact_Model')
 const Service = require('../Model/Service_Model')
 const mongoose = require("mongoose")
 
+
+
 const GetAllUser = async (req, res) => {
     try {
         const users = await User.find().
@@ -111,6 +113,8 @@ const UpdateuserById=async(req,res)=>{
 
 const AddService = async(req,res)=>{
     try {
+        console.log(req.body)
+
         const {service,description,price,provider} = req.body;
         const serviceAddded = await Service.create({service,description,price,provider});
         console.log(serviceAddded)
@@ -119,7 +123,12 @@ const AddService = async(req,res)=>{
     } catch (error) {
         next(error)
     }
-}
+} 
+
+
+
+
+
 
 
 module.exports = { GetAllUser, GetAllContacts,DeleteContacts, DeleteUser, GetUserById, UpdateuserById,AddService };

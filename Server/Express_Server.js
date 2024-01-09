@@ -9,12 +9,15 @@ require('dotenv').config(); //This is compulsary to use 'env file'
 const connectToDb = require('./db');
 const error_Middleware = require("./Middleware/Error_Middleware");
 const cors = require('cors')
+const bodyParser = require('body-parser');
+
 
 app.set('view engine','ejs')
 app.set('views','./views')
 
 /* Handling cors problem */
 app.use(cors())
+app.use(bodyParser.json());
 
 
 app.use(express.json());

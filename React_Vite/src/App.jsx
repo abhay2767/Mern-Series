@@ -20,7 +20,7 @@ import Admin_Services from "./Pages/Admin_Services";
 const App = () => {
   
   return <>
- 
+
 <Navbar/>
       <Routes>
         <Route path='/' element={<Home />}/>
