@@ -2,21 +2,23 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from '../store/auth';
 
 const Verify_Email = () => {
 
   const navigate = useNavigate();
+  const {user} = useAuth();
 
-  const [user, setUser] = useState({
-    email:"",
+  const [data, setData] = useState({
+    email:user.email,
   });
   const handleInput=(e)=>{
-    setUser({...user,[e.target.name]:e.target.value})
+    setData({...data,[e.target.name]:e.target.value})
   }
 
   const handleSubmit=async(e)=>{
     e.preventDefault()
-    console.log(user)
+    console.log(data)
 
     try {
     const response = await fetch(`http://localhost:5000/api/auth/send-mail-verification`, {
@@ -24,7 +26,7 @@ const Verify_Email = () => {
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify({ email:user.email})
+          body: JSON.stringify({ email:data.email})
         });
         const json = await response.json()
         console.log(json)
@@ -55,7 +57,7 @@ const Verify_Email = () => {
                 
                 <div>
                   <label className='lable' htmlFor='email'>Email</label>
-                  <input type="text" name="email"  onChange={handleInput} placeholder='Enter your email' id="email" required autoComplete='off' />
+                  <input type="text" name="email" value={user.email} onChange={handleInput} placeholder='Enter your email' id="email" required autoComplete='off' />
                 </div>
                 
                 
