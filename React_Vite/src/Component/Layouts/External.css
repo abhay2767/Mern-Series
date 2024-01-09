@@ -1,0 +1,33 @@
+td{
+    font-size: 1.7rem;
+    letter-spacing: 0.1rem;
+    padding: 3rem;
+    text-align: center;
+    color: blue;
+    width: 30rem;
+}
+
+table{
+    background: #fff;
+    box-shadow: rgba(255,255,255,0.2) 0px 7px, 29px, 0px;
+    border-collapse: collapse;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem
+}
+
+body tr{
+    display: grid;
+    grid-template-columns: repeat(5,minmaz(10rem,1fr));
+    align-items: center;
+    box-shadow: 0 0.3rem 0 gray;
+    margin-bottom: 4px solid transparent;
+    color: aqua;
+
+    &:last-child{
+        box-shadow: none;
+    }
+}
+
