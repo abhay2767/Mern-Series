@@ -50,7 +50,7 @@ const Verify_Email = () => {
         <div className="float-child">
           <div className="blue">
           <div className="ragistration-form">
-                <h1 className='main-heading '>Reset Password</h1>
+                <h1 className='main-heading '>Verify Email</h1>
                 <form  method="POST">
                 
                 <div>
