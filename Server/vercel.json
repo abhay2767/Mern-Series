@@ -1,12 +1,13 @@
 {
     "version":2,
     "builds":[
-        {"src":"*.js","use":"@vercel/node"}
+        {"src":"./Express_Server.js",
+        "use":"@vercel/node"}
         ],
     "routes":[
         {
-            "src": "/api(.*)",
-            "dest":"/api"
+            "src": "/(.*)",
+            "dest":"/"
         }
     ]
 }
