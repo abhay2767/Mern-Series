@@ -11,6 +11,8 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const AuthorizationToken = `Bearer ${token}`;
 
+    const Apipath = "http://localhost:5000";
+
     const fetchData = async () => {
         try {
             const response = await fetch('http://localhost:5000/api/service/servicedata', {
@@ -92,7 +94,7 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
 
-    return <AuthContext.Provider value={{ isLoggedIn, storeTokenInLs, LogoutUser, fetchData, user, isLoading, serviceData, contactData, fetchContactdata, AuthorizationToken }}>
+    return <AuthContext.Provider value={{ isLoggedIn, storeTokenInLs, LogoutUser, fetchData, user, isLoading, serviceData, contactData, fetchContactdata, AuthorizationToken, Apipath}}>
         {children}
     </AuthContext.Provider>
 }

@@ -6,7 +6,7 @@ import { useAuth } from '../store/auth';
 
 const Verify_Email = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user,Apipath } = useAuth();
 
   const [data, setData] = useState({
     email: user.email,
@@ -19,7 +19,7 @@ const Verify_Email = () => {
     e.preventDefault()
     console.log(data)
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/send-mail-verification`, {
+      const response = await fetch(`${Apipath}/api/auth/send-mail-verification`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

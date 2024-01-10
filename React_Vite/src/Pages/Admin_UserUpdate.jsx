@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Admin_UserUpdate = () => {
     const navigate = useNavigate();
-    const { AuthorizationToken } = useAuth();
+    const { AuthorizationToken,Apipath } = useAuth();
     const params = useParams();
     // console.log("what is params:-"+params)
     const [data, setdata] = useState({
@@ -20,7 +20,7 @@ const Admin_UserUpdate = () => {
 
     const getSingleUserData = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/users/${params.id}`, {
+            const response = await fetch(`${Apipath}/api/admin/users/${params.id}`, {
                 method: "GET",
                 headers: {
                     Authorization: AuthorizationToken,

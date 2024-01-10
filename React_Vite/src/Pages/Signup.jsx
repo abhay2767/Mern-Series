@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { storeTokenInLs } = useAuth();
+  const { storeTokenInLs,Apipath } = useAuth();
 
   const [user, setUser] = useState({
     name: "",
@@ -23,7 +23,7 @@ const Signup = () => {
     e.preventDefault()
     console.log(user)
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/ragister`, {
+      const response = await fetch(`${Apipath}/api/auth/ragister`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

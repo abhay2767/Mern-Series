@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
   const navigate = useNavigate();
-  const { fetchContactdata } = useAuth()
+  const { fetchContactdata, Apipath } = useAuth()
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -33,7 +33,7 @@ const Contact = () => {
     e.preventDefault();
     console.log(data)
     try {
-      const response = await fetch(`http://localhost:5000/api/form/contact`, {
+      const response = await fetch(`${Apipath}/api/form/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

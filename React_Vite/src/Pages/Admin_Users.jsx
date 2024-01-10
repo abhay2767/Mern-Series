@@ -6,11 +6,11 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Admin_Users = () => {
-    const { AuthorizationToken } = useAuth();
+    const { AuthorizationToken,Apipath } = useAuth();
     const [users, setUsers] = useState([])
     const getAllUsersdata = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/admin/users', {
+            const response = await fetch( `${Apipath}/api/admin/users}`, {
                 method: "GET",
                 headers: {
                     Authorization: AuthorizationToken,

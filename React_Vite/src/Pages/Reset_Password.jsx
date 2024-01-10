@@ -2,8 +2,10 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from "../store/auth";
 
 const Reset_Password = () => {
+  const {Apipath} = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -17,7 +19,7 @@ const Reset_Password = () => {
     e.preventDefault()
     console.log(user)
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/reset-password`, {
+      const response = await fetch(`${Apipath}/api/auth/reset-password`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

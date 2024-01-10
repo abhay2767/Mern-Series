@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Admin_Services = () => {
   const navigate = useNavigate();
-  const { AuthorizationToken,fetchData } = useAuth();
+  const { AuthorizationToken,fetchData,Apipath} = useAuth();
   const [servicess, setServices] = useState({
     service: "",
     description: "",
@@ -21,7 +21,7 @@ const Admin_Services = () => {
 
   const handleSubmit = async() => {
     try {
-      const response = await fetch('http://localhost:5000/api/admin/services', {
+      const response = await fetch(`${Apipath}/api/admin/services`, {
         method: "POST",
                 headers: {
                     Authorization: AuthorizationToken,
