@@ -10,7 +10,7 @@ const Admin_Users = () => {
     const [users, setUsers] = useState([])
     const getAllUsersdata = async () => {
         try {
-            const response = await fetch( `${Apipath}/api/admin/users}`, {
+            const response = await fetch( `${Apipath}/api/admin/users`, {
                 method: "GET",
                 headers: {
                     Authorization: AuthorizationToken,
