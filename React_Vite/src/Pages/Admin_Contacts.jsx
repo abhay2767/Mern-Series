@@ -4,7 +4,6 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Admin_Contacts = () => {
-
   const { contactData } = useAuth();
   const {AuthorizationToken} = useAuth();
   const {fetchContactdata} =useAuth()
@@ -26,6 +25,7 @@ const Admin_Contacts = () => {
       console.log(error)
     }
   }
+  
   return (
     <>
       <div>

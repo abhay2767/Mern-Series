@@ -2,21 +2,19 @@ import photo from '../Images/Ragister.jpg'
 import { useAuth } from '../store/auth';
 import './Design.css'
 
-
-
 const Service = () => {
   const { serviceData } = useAuth();
 
   return (
     <>
       <div>
-        
+
         {serviceData && serviceData.map((data, index) => {
           const { service, price, description, provider } = data;
           return (
             <div key={index} className="card">
               <h2>Service Card</h2>
-              <img src = {photo} alt="" height={200} width={225}/>
+              <img src={photo} alt="" height={200} width={225} />
               <label className="lable" htmlFor="service">Service:</label>
               <p className='para'>{service}</p>
 

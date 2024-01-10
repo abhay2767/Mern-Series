@@ -18,32 +18,32 @@ import Admin_UserUpdate from "./Pages/Admin_UserUpdate"
 import Admin_Services from "./Pages/Admin_Services";
 
 const App = () => {
-  
+
   return <>
 
-<Navbar/>
-      <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/contact'  element={<Contact />}/>
-        <Route path='/service' element={<Service />}/>
-        <Route path='/signup' element={<Signup />}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/login' element={<Login />}/>
-        <Route path='/logout' element={<Logout />}/>
-        <Route path='/reset-password' element={<Reset_Password />}/>
-        <Route path='/verify-email' element={<Verify_Email />}/>
-        <Route path='*' element={<Error />}/>
+    <Navbar />
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/contact' element={<Contact />} />
+      <Route path='/service' element={<Service />} />
+      <Route path='/signup' element={<Signup />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/logout' element={<Logout />} />
+      <Route path='/reset-password' element={<Reset_Password />} />
+      <Route path='/verify-email' element={<Verify_Email />} />
+      <Route path='*' element={<Error />} />
 
-        {/* Nested Route */}
-        <Route path='/admin' element={<Admin_Layout />}>
-          <Route path='users' element={<Admin_Users/>} />
-          <Route path='contacts' element={<Admin_Contacts/>} />
-          <Route path='users/:id/edit' element={<Admin_UserUpdate/>} />
-          <Route path='servicepage' element={<Admin_Services/>}/>
-        </Route>
+      {/* Nested Route */}
+      <Route path='/admin' element={<Admin_Layout />}>
+        <Route path='users' element={<Admin_Users />} />
+        <Route path='contacts' element={<Admin_Contacts />} />
+        <Route path='users/:id/edit' element={<Admin_UserUpdate />} />
+        <Route path='servicepage' element={<Admin_Services />} />
+      </Route>
 
-      </Routes>
-    <Footer/>
+    </Routes>
+    <Footer />
   </>
 }
 

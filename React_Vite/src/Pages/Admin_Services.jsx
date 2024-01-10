@@ -8,16 +8,17 @@ import 'react-toastify/dist/ReactToastify.css';
 const Admin_Services = () => {
   const navigate = useNavigate();
   const { AuthorizationToken,fetchData } = useAuth();
-
   const [servicess, setServices] = useState({
     service: "",
     description: "",
     price: "",
     provider: "",
   })
+
   const handleInput = (e) => {
     setServices({ ...servicess, [e.target.name]: e.target.value })
   }
+
   const handleSubmit = async() => {
     try {
       const response = await fetch('http://localhost:5000/api/admin/services', {
@@ -42,11 +43,11 @@ const Admin_Services = () => {
         fetchData()
       }
 
-
     } catch (error) {
       console.log(error)
     }
   }
+  
   return (
     <>
       <div>

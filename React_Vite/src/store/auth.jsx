@@ -1,7 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
-
 /* it is Called Provider */
 // eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
@@ -11,8 +10,6 @@ export const AuthProvider = ({ children }) => {
     const [user, setuser] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const AuthorizationToken = `Bearer ${token}`;
-
-
 
     const fetchData = async () => {
         try {
@@ -24,7 +21,7 @@ export const AuthProvider = ({ children }) => {
                 setServiceData(data.response);
                 console.log(data.response)
             }
-            else{
+            else {
                 console.error("Error while fetching data")
             }
         } catch (error) {
@@ -50,11 +47,6 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-
-
-    
-
-
     const storeTokenInLs = (servertoken) => {
         settoken(servertoken)
         return localStorage.setItem('Token', servertoken)
@@ -68,11 +60,6 @@ export const AuthProvider = ({ children }) => {
         return localStorage.removeItem("Token")
     }
 
-
-
-
-
-
     //Jwt get the User Data who is currently loged in
     const userAuthentication = async () => {
         try {
@@ -83,14 +70,13 @@ export const AuthProvider = ({ children }) => {
                     Authorization: AuthorizationToken,
                 }
             })
-
             if (response.ok) {
                 const data = await response.json();
                 setuser(data.userData)
                 console.log(data.userData)
                 setIsLoading(false)
             }
-            else{
+            else {
                 setIsLoading(false)
             }
 
@@ -99,7 +85,6 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
-
     useEffect(() => {
         userAuthentication()
         fetchData()
@@ -107,13 +92,10 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
 
-
-    return <AuthContext.Provider value={{ isLoggedIn, storeTokenInLs, LogoutUser, fetchData, user,isLoading, serviceData,contactData,fetchContactdata, AuthorizationToken }}>
+    return <AuthContext.Provider value={{ isLoggedIn, storeTokenInLs, LogoutUser, fetchData, user, isLoading, serviceData, contactData, fetchContactdata, AuthorizationToken }}>
         {children}
     </AuthContext.Provider>
 }
-
-
 
 /* it is called Consumer */
 // eslint-disable-next-line react-refresh/only-export-components
