@@ -34,7 +34,7 @@ const Admin_Users = () => {
     const deleteUser = async (id) => {
         try {
             console.log("In" + id)
-            const response = await fetch(`http://localhost:5000/api/admin/users/delete/${id}`, {
+            const response = await fetch(`${Apipath}/api/admin/users/delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: AuthorizationToken,
