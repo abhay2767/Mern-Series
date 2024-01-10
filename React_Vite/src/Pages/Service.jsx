@@ -16,7 +16,7 @@ const Service = () => {
           return (
             <div key={index} className="card">
               <h2>Service Card</h2>
-              <img src = {photo} alt="" height={100} width={100}/>
+              <img src = {photo} alt="" height={200} width={225}/>
               <label className="lable" htmlFor="service">Service:</label>
               <p className='para'>{service}</p>
 

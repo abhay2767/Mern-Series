@@ -1,110 +1,75 @@
+/* Service Card Page */
 .card {
   display: inline-flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 15px;
   margin: 16px;
-  margin-left: 60px;
-  margin-top: 50px;
-
+  margin-left: 70px;
   width: 250px;
 }
-
 h2 {
   font-size: 25px;
 }
-
 img {
   max-width: 100%;
   height: auto;
   border-radius: 4px;
   margin-top: 8px;
 }
-
 .lable {
   font-weight: bold;
 }
-
 .para{
   color: black;
 }
-.mata{
-  display: flex;
-  justify-content: center;
-}
 
 
 
 
-/* Add some styling to the overall section */
+/* Admin User Cntrol */
 .admin-users-section {
   padding: 20px;
 }
-
-/* Style the container holding the title */
 .admin-users-section .container h1 {
   font-size: 24px;
   margin-bottom: 20px;
 }
-
-/* Style the container holding the table */
 .admin-users-section .admin-users {
   margin-top: 20px;
 }
-
-/* Style the table */
 .admin-users-section table {
   width: 100%;
   border-collapse: collapse;
 }
-
-/* Style the table header */
 .admin-users-section th {
   background-color: #f2f2f2;
   border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
 }
-
-/* Style the table cells */
 .admin-users-section td {
   border: 1px solid #ddd;
   padding: 10px;
 }
-
-/* Style alternate rows for better readability */
 .admin-users-section tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
-
-/* Style the Update and Delete cells as buttons */
 .admin-users-section td:nth-child(4),
 .admin-users-section td:nth-child(5) {
   cursor: pointer;
   color: #007bff;
   text-decoration: underline;
 }
-
-/* Hover effect for buttons */
 .admin-users-section td:nth-child(4):hover,
 .admin-users-section td:nth-child(5):hover {
   color: #0056b3;
 }
 
 
-
-
-.card {
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 20px;
-  width: 300px;
-  text-align: center;
-}
-
+/* Admin Contact control */
 .name {
   font-size: 1.5em;
   font-weight: bold;
@@ -122,6 +87,7 @@ img {
 }
 
 
+/* Admin and Logout style button */
 .button {
   margin-top: 5px;
   display: inline-block;
@@ -154,11 +120,10 @@ img {
 }
 
 
-
+/* Admin Add Services */
 label {
   margin-bottom: 8px;
 }
-
 input,
 textarea {
   width: 100%;
@@ -168,7 +133,6 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
 button {
   background-color: #4caf50;
   color: #fff;
@@ -191,16 +155,12 @@ form{
 
 
 
-
+/* Forget Password Link */
 .profile{
   border-radius: 50%;
 }
-
-
 .resetpass{
+  color: black;
   display: flex;
   justify-content: end;
-}
-.resetpass:hover{
-  color: red;
 }
