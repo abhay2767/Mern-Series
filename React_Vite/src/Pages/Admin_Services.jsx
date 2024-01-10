@@ -50,7 +50,7 @@ const Admin_Services = () => {
   
   return (
     <>
-      <div>
+      <div className='serv'>
         <h1>Add Services</h1>
         <form method="POST" className='serviceFoem'>
           <label htmlFor="service">Service:</label>

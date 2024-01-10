@@ -121,6 +121,11 @@ img {
 
 
 /* Admin Add Services */
+.serv{
+  border: 2px solid green;
+  padding: 25px;
+  margin: 25px;
+}
 label {
   margin-bottom: 8px;
 }
