@@ -61,7 +61,7 @@ userSchema.methods.generateToken = function(){
             isAdmin: this.isAdmin
         },process.env.JWT_SECRET, {expiresIn:'3d'}) /* 3 days */
     } catch (error) {
-        console.log(error)
+        console.log('messag'+error)
     }
 }
 
