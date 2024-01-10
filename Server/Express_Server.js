@@ -4,7 +4,7 @@ const auth_router = require('./Router/Auth_Router')
 const contact_router = require('./Router/Contact_Router')
 const service_router = require('./Router/Service_Router')
 const admin_router = require('./Router/Admin_Router')
-const PORT = process.env.PORT || 6010
+const PORT = process.env.PORT || 5000
 require('dotenv').config(); //This is compulsary to use 'env file'
 const connectToDb = require('./db');
 const error_Middleware = require("./Middleware/Error_Middleware");
