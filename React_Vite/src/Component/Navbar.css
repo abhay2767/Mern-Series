@@ -2,6 +2,7 @@
     background-color: black;
     padding: 10px;
 }
+
 ul{
     display: flex;
     justify-content: space-evenly;

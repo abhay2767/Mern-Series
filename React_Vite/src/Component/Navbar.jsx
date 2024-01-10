@@ -15,7 +15,7 @@ const Navbar = () => {
         <>
             <nav className="Navbar">
                 <ul className="nav-list v-class-resp">
-                    <p>Wellcome<span className='name'>{isLoggedIn && user && !isLoading ? user.name : "Guest"}{isLoggedIn && user.is_verified == 1 ? <MdVerified style={style} /> : ""}<Link to='/verify-email'>{user && user.is_verified !== 1 && isLoggedIn ? <b style={style1}>(verify your account)</b> : ""}</Link></span></p>
+                    <p>Wellcome <span className='name'>{isLoggedIn && user && !isLoading ? user.name : "Guest"}{isLoggedIn && user.is_verified == 1 ? <MdVerified style={style} /> : ""}<Link to='/verify-email'>{user && user.is_verified !== 1 && isLoggedIn ? <b style={style1}>(verify your account)</b> : ""}</Link></span></p>
                 </ul>
                 <ul className="nav-list v-class-resp">
                 {user && !isLoading && isLoggedIn && user.isAdmin ?

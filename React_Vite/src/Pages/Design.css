@@ -164,3 +164,23 @@ form{
   display: flex;
   justify-content: end;
 }
+
+
+
+/* Home Page */
+.bg {
+  background-image: url("../Images/pho.jpg");
+  height: 70vh; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Admin Page */
+.bg1 {
+  background-image: url("../Images/phos.jpg");
+  height: 65vh; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

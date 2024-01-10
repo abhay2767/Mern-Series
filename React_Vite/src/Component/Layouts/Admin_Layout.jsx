@@ -4,10 +4,17 @@ import { TbMessages } from "react-icons/tb";
 import { MdHomeRepairService } from "react-icons/md";
 import { useAuth } from '../../store/auth';
 import { Navigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Admin_Layout = () => {
     const { user, isLoading } = useAuth();
     console.log("User is :- " + JSON.stringify(user))
+
+    let location = useLocation();
+    useEffect(() => {
+    console.log(location.pathname)
+  }, [location])
 
     if (isLoading) {
         return <h1>Loading..</h1>
@@ -19,6 +26,7 @@ const Admin_Layout = () => {
     }
     return (
         <>
+     
             <nav className="Navbar">
                 <ul className="nav-list v-class-resp">
                     <Link to="/admin/users"><li><PiUsersThreeFill />Users</li></Link>
@@ -26,8 +34,8 @@ const Admin_Layout = () => {
                     <Link to="/admin/servicepage"><li><MdHomeRepairService />Services</li></Link>
                 </ul>
             </nav>
-
-            <Outlet />{/* It is used when you use nested route so here thats the reason we have use this feature of React Router Dom */}
+            
+            {location.pathname==="/admin" ? <div className='bg1'></div> : <Outlet />}{/*<Outlet /> It is used when you use nested route so here thats the reason we have use this feature of React Router Dom */}
         </>
     )
 }
