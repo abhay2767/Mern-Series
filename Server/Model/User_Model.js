@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
         type:Number,
         default:0
     },
+    images:{
+        type:String,
+        required: true
+    }
 })
 
 //Secamd way to hash the password using 'pre()' method: this 'pre()' will execute before data is stored in the databse.

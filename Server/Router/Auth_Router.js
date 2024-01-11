@@ -19,6 +19,22 @@ router.use(express.json())
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:true}))
 
+const multer = require("multer");
+const path = require("path");
+
+router.use(express.static('Public'));
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, '../Public/images'));
+    },
+    filename: function (req, file, cb) {
+        const name = Date.now() + '-' + file.originalname;
+        cb(null, name);
+    }
+  });
+
+  const upload = multer({ storage: storage });
 
 router.route('/').get(home)
 /* router.get('/',(req,res)=>{
@@ -26,7 +42,7 @@ router.route('/').get(home)
 }) */
 
 //validate(signupchema) is a middleware which is used to validate user input is in a right formet or not.
-router.route('/ragister').post(validate(signupSchema), Auth_Controller.ragister) 
+router.route('/ragister').post(upload.single('images'),validate(signupSchema), Auth_Controller.ragister)
 
 //validate(loginSchema) is a middleware which is used to validate user input is in a right formet or not.
 router.route('/login').post(validate(loginSchema),Auth_Controller.login) 

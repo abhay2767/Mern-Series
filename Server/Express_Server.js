@@ -4,7 +4,6 @@ const auth_router = require('./Router/Auth_Router');
 const contact_router = require('./Router/Contact_Router');
 const service_router = require('./Router/Service_Router');
 const admin_router = require('./Router/Admin_Router');
-// const signup_router = require('./Router/Signup_Router');
 const PORT = 5000;
 require('dotenv').config(); // This is compulsory to use 'env file'
 const connectToDb = require('./db');
@@ -23,7 +22,7 @@ app.use('/api/form', contact_router);
 app.use('/api/service', service_router);
 app.use('/api/admin', admin_router);
 
-// app.use('/api/profile', signup_router);
+
 
 app.use(error_Middleware); // This is compulsory when using Express error handling.
 
