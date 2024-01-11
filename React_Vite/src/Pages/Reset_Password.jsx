@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../store/auth";
+import Navbar from '../Component/Navbar'
 
 const Reset_Password = () => {
   const {Apipath} = useAuth();
@@ -43,6 +44,7 @@ const Reset_Password = () => {
 
   return (
     <>
+    <Navbar/>
       <div className="float-container">
         <div className="float-child">
           <div className="blue">

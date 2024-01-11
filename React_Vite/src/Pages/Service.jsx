@@ -1,12 +1,14 @@
 import photo from '../Images/Ragister.jpg'
 import { useAuth } from '../store/auth';
 import './Design.css'
+import Navbar from '../Component/Navbar'
 
 const Service = () => {
   const { serviceData } = useAuth();
 
   return (
     <>
+    <Navbar/>
       <div>
 
         {serviceData && serviceData.map((data, index) => {

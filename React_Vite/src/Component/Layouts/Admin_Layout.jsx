@@ -6,6 +6,7 @@ import { useAuth } from '../../store/auth';
 import { Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import Navbar from '../Navbar';
 
 const Admin_Layout = () => {
     const { user, isLoading } = useAuth();
@@ -26,7 +27,7 @@ const Admin_Layout = () => {
     }
     return (
         <>
-     
+     <Navbar/>
             <nav className="Navbar">
                 <ul className="nav-list v-class-resp">
                     <Link to="/admin/users"><li><PiUsersThreeFill />Users</li></Link>

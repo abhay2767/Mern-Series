@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { useAuth } from "../store/auth";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from '../Component/Navbar'
 
 const Login = () => {
   const navigate = useNavigate();
@@ -46,6 +47,9 @@ const Login = () => {
   }
 
   return (
+    <>
+    <Navbar/>
+    
     <div className="float-container">
       <div className="float-child">
         <div className="blue">
@@ -73,6 +77,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

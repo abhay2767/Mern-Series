@@ -3,6 +3,7 @@ import { useAuth } from '../store/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from '../Component/Navbar';
 
 const Contact = () => {
   const navigate = useNavigate();
@@ -54,6 +55,7 @@ const Contact = () => {
 
   return (
     <>
+    <Navbar/>
       <div className="float-container">
         <div className="float-child">
           <div className="blue">

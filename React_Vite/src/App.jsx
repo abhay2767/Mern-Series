@@ -4,7 +4,7 @@ import Contact from "./Pages/Contact"
 import Service from "./Pages/Service"
 import Signup from "./Pages/Signup"
 import Login from "./Pages/Login"
-import Navbar from "./Component/Navbar"
+// import Navbar from "./Component/Navbar"
 import Footer from "./Component/Footer"
 import Error from "./Pages/Error"
 import Logout from "./Pages/Logout"
@@ -21,7 +21,7 @@ const App = () => {
 
   return <>
 
-    <Navbar />
+    {/* <Navbar /> */}
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/contact' element={<Contact />} />
