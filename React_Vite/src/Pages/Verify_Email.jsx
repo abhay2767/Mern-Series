@@ -8,10 +8,21 @@ import Navbar from '../Component/Navbar'
 const Verify_Email = () => {
   const navigate = useNavigate();
   const { user,Apipath } = useAuth();
+  console.log(user.email)
 
   const [data, setData] = useState({
-    email: user.email,
+    email: "",
   });
+
+  const [userdata, setuserData] = useState(true)
+  if (userdata && user) {
+    setData({
+      email: user.email,
+    });
+
+    setuserData(false)
+  }
+  
   const handleInput = (e) => {
     setData({ ...data, [e.target.name]: e.target.value })
   }
@@ -54,7 +65,7 @@ const Verify_Email = () => {
 
                 <div>
                   <label className='lable' htmlFor='email'>Email</label>
-                  <input type="text" name="email" value={user.email} onChange={handleInput} placeholder='Enter your email' id="email" required autoComplete='off' />
+                  <input type="text" name="email"  value={data.email} onChange={handleInput} placeholder='Enter your email' id="email" required autoComplete='off' />
                 </div>
 
 

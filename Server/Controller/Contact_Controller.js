@@ -3,9 +3,7 @@ const ContactFromModel = require('../Model/Contact_Model');
 
 const contactform = async (req,res)=>{
     try {
-        console.log(req.body)
         const {name, email, message} = req.body;
-
 
         const data = await ContactFromModel.create({
             name,email,message

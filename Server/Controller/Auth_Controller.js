@@ -31,7 +31,7 @@ const home = async(req, res)=>{
     }
 }
 
-//Sign up Logic
+//Signup Logic
 const ragister = async(req, res)=>{
     try {
         console.log(req.body)
@@ -75,7 +75,6 @@ const ragister = async(req, res)=>{
 //Sign in Logic
 const login = async(req,res)=>{
     try {
-        // console.log(req.body)
         const {email, password} = req.body;
 
         const userExist = await UserFromModel.findOne({email});
@@ -149,7 +148,6 @@ const mailVerification = async(req,res)=>{
 const SendMailVerification=async(req,res)=>{
     try {
         const {email} = req.body;
-        console.log(email)
         const userExist = await UserFromModel.findOne({email: email})
         if(!userExist)
         {
@@ -158,7 +156,6 @@ const SendMailVerification=async(req,res)=>{
         if(userExist.is_verified == 1){
             return res.status(409).json({message:"Email Already Verified"})
         }
-        console.log("Done")
         
         const msg = '<h1> Hello, Please <a href="http:localhost:5000/api/auth/mail-verification/?id='+userExist._id+'">Varify</a> Your mail </h1>';
         mailer.sendMail(userExist.email,'Mail varification', msg); 
@@ -185,7 +182,6 @@ const passwordReset=async(req,res)=>{
         }
         console.log("data is"+email)
         
-        console.log("Done")
         const randomStr = randamstring.generate();
         console.log("Str is:-"+randomStr)
         const msg = '<p>Hii '+userExist.name+', Please Click <a href = "http://localhost:5000/api/auth/forget-passwordform/?token='+randomStr+'">here</a>to reset your password.<p>';

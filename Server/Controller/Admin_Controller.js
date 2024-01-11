@@ -27,7 +27,6 @@ const GetAllContacts = async (req, res) => {
         if (!contacts || contacts === 0) {
             return res.status(404).json({ message: "No contact found" })
         }
-        console.log(contacts)
         return res.status(200).json(contacts);
     } catch (error) {
         next(error);
@@ -36,7 +35,6 @@ const GetAllContacts = async (req, res) => {
 
 const DeleteContacts = async(req,res)=>{
     try {
-        console.log("In")
         const id = req.params.id;
         if (!mongoose.Types.ObjectId.isValid(id)) {
             console.log("Contact Not found")
@@ -47,7 +45,6 @@ const DeleteContacts = async(req,res)=>{
         return res.status(200).json({message:"Contact deleted"})
         
     } catch (error) {
-        console.log("Inside")
         res.status(404).json({message:"Error while deleting contact"})
         next(error)
     }
@@ -93,7 +90,6 @@ const GetUserById = async(req,res)=>{
 const UpdateuserById=async(req,res)=>{
     try {
         const id = req.params.id;
-        // console.log("In")
         if (!mongoose.Types.ObjectId.isValid(id)) {
             console.log("User Not found")
             return res.status(404).json({message:"User Not found"}); // Return null if the ID is not valid
@@ -113,8 +109,6 @@ const UpdateuserById=async(req,res)=>{
 
 const AddService = async(req,res)=>{
     try {
-        console.log(req.body)
-
         const {service,description,price,provider} = req.body;
         const serviceAddded = await Service.create({service,description,price,provider});
         console.log(serviceAddded)
@@ -124,9 +118,6 @@ const AddService = async(req,res)=>{
         next(error)
     }
 } 
-
-
-
 
 
 

@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/service/servicedata', {
+            const response = await fetch(`${Apipath}/api/service/servicedata`, {
                 method: "GET",
             });
             if (response.ok) {
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchContactdata = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/admin/contacts', {
+            const response = await fetch(`${Apipath}/api/admin/contacts`, {
                 method: "GET",
                 headers: {
                     Authorization: AuthorizationToken,
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }) => {
     const userAuthentication = async () => {
         try {
             setIsLoading(true)
-            const response = await fetch('http://localhost:5000/api/auth/user', {
+            const response = await fetch(`${Apipath}/api/auth/user`, {
                 method: "GET",
                 headers: {
                     Authorization: AuthorizationToken,

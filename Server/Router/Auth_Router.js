@@ -5,7 +5,7 @@ const Auth_Controller = require('../Controller/Auth_Controller')
 const {signupSchema,loginSchema,emailSchema} = require('../Validators/Auth_Validator');
 const validate = require('../Middleware/Validator_Middleware')
 const Auth_Middleware = require('../Middleware/Auth_Middleware');
-
+const bodyParser = require('body-parser')
 
 
 /* This line of code adds Express middleware that parses incoming requests bodies with JSON payloads.
@@ -16,7 +16,6 @@ const Auth_Middleware = require('../Middleware/Auth_Middleware');
 router.use(express.json())
 
 //This will helps to get the data from the form in 'views'
-const bodyParser = require('body-parser')
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({extended:true}))
 

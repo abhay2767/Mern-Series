@@ -11,12 +11,14 @@ const Admin_Contacts = () => {
 
   const deleteContact = async (id) => {
     try {
+      
       const response = await fetch(`${Apipath}/api/admin/contacts/delete/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: AuthorizationToken,
         },
       });
+      
       const data = await response.json()
       console.log(`User After delete${data}`)
       fetchContactdata();
