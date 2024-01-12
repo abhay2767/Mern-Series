@@ -23,12 +23,23 @@ const Auth_Middleware = async(req,res,next)=>{
         select({
             password:0,
         })
-        console.log(userdata)
+        console.log("Data is "+userdata)
+
+        
+        /* const imgNm = await userdata.images;
+        console.log("Images name is-"+imgNm)
+        const getMyImages = (imgNm) => {
+            const imagePath = path.join(__dirname, '..', 'Public/images', imgNm);
+            return imagePath;
+          };
+        const imageName = imgNm;
+        const displayImage = getMyImages(imageName)
+        req.photo = displayImage */
 
         req.user = userdata;
         req.token = token;
         req.userId = userdata._id;
-        
+
         next();
     } catch (error) {
         return res.status(401).json({msg: "unAuthorized. Invalid token"})

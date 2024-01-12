@@ -7,29 +7,52 @@ import Navbar from '../Component/Navbar'
 
 const Signup = () => {
   const navigate = useNavigate();
-  const { storeTokenInLs,Apipath } = useAuth();
+  const { storeTokenInLs, Apipath } = useAuth();
 
-  const [user, setUser] = useState({
+  /* const [user, setUser] = useState({
     name: "",
     email: "",
     mobile: "",
     password: "",
   });
-
   const handleInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value })
+  } */
+  const [name, setname] = useState('')
+  const [email, setemail] = useState('')
+  const [mobile, setmobile] = useState('')
+  const [password, setpassword] = useState('')
+  const [image, setimage] = useState('')
+  
+  const handleInput1 = (e) => {
+    setname(e.target.value )
   }
+  const handleInput2 = (e) => {
+    setemail(e.target.value )
+  }
+  const handleInput3 = (e) => {
+    setmobile(e.target.value )
+  }
+  const handleInput4 = (e) => {
+    setpassword( e.target.value )
+  }
+  
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(user)
+
     try {
+      const formdata = new FormData
+      formdata.append('name', name)
+      formdata.append('email', email)
+      formdata.append('mobile', mobile)
+      formdata.append('password', password)
+      formdata.append('images', image)
       const response = await fetch(`${Apipath}/api/auth/ragister`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ name: user.name, email: user.email, mobile: user.mobile, password: user.password })
+        
+        body: formdata,
       });
       const json = await response.json()
       console.log(json)
@@ -52,7 +75,7 @@ const Signup = () => {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div className="float-container">
         <div className="float-child">
           <div className="blue">
@@ -61,19 +84,24 @@ const Signup = () => {
               <form method="POST">
                 <div>
                   <label className='lable' htmlFor='name'>Name</label>
-                  <input type="text" name="name" onChange={handleInput} placeholder='Enter your name' id="name" required autoComplete='off' />
+                  <input type="text" name="name" value={name}  onChange={handleInput1} placeholder='Enter your name' id="name" required autoComplete='off' />
                 </div>
                 <div>
                   <label className='lable' htmlFor='email'>Email</label>
-                  <input type="text" name="email" onChange={handleInput} placeholder='Enter your email' id="email" required autoComplete='off' />
+                  <input type="text" name="email" value={email}  onChange={handleInput2} placeholder='Enter your email' id="email" required autoComplete='off' />
                 </div>
                 <div>
                   <label className='lable' htmlFor='number'>Mobile</label>
-                  <input type="text" name="mobile" onChange={handleInput} placeholder='Enter your phone number' id="mobile" required autoComplete='off' />
+                  <input type="text" name="mobile" value={mobile}  onChange={handleInput3} placeholder='Enter your phone number' id="mobile" required autoComplete='off' />
                 </div>
                 <div>
                   <label className='lable' htmlFor='password'>Password</label>
-                  <input type="password" name="password" onChange={handleInput} placeholder='Enter your password' id="password" required autoComplete='off' />
+                  <input type="password" name="password" value={password}  onChange={handleInput4} placeholder='Enter your password' id="password" required autoComplete='off' />
+                </div>
+
+                <div>
+                  <label className='lable' htmlFor='image'>Upload Image</label>
+                  <input type="file" name="image" onChange={(e)=> setimage(e.target.files[0])} placeholder='Upload your image' required autoComplete='off' />
                 </div>
 
               </form>

@@ -35,3 +35,17 @@ a{
 .name{
     color: purple;
 }
+
+.profileImg{
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.profileImg1{
+    filter:invert(1);
+    border: 5px red;
+    height: 50px;
+    width: 50px;
+}

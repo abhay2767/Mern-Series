@@ -34,7 +34,6 @@ const home = async (req, res) => {
 //Signup Logic
 const ragister = async (req, res) => {
     try {
-        console.log("In")
         console.log(req.body)
         const { name, email, mobile, password, isAdmin,is_verified} = req.body;
         const userExist = await UserFromModel.findOne({ email: email })
@@ -120,7 +119,8 @@ const login = async (req, res) => {
 const user = async (req, res) => {
     try {
         const userData = req.user;
-        return res.status(200).json({ userData })/* .sendFile(userData.images); */
+        // const photoData = req.photo
+        return res.status(200).json({ userData })/* .senFile(photoData) */;
     } catch (error) {
         console.log(error)
 
