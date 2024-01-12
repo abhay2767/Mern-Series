@@ -1,11 +1,12 @@
-import { useState } from "react"
+/* eslint-disable react/prop-types */
+import { useState,useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../store/auth";
 import Navbar from '../Component/Navbar'
 
-const Reset_Password = () => {
+const Reset_Password = ({setProgress}) => {
   const {Apipath} = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -41,6 +42,13 @@ const Reset_Password = () => {
       console.log(error)
     }
   }
+  useEffect(()=>{
+    setProgress(10)
+    setProgress(50)
+    setTimeout(()=>{
+      setProgress(100)
+    },1500);
+  },[])
 
   return (
     <>

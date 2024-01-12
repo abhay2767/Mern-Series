@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react"
 import { useAuth } from "../store/auth"
 import '../Pages/Design.css'
@@ -5,10 +6,11 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Admin_Users = () => {
+const Admin_Users = ({setProgress}) => {
     const { AuthorizationToken,Apipath } = useAuth();
     const [users, setUsers] = useState([])
     const getAllUsersdata = async () => {
+        setProgress(10)
         try {
             const response = await fetch( `${Apipath}/api/admin/users`, {
                 method: "GET",
@@ -16,6 +18,7 @@ const Admin_Users = () => {
                     Authorization: AuthorizationToken,
                 },
             });
+            setProgress(50)
             const data = await response.json();
             setUsers(data)
             console.log('Users ' + data)
@@ -23,6 +26,7 @@ const Admin_Users = () => {
             if (response.ok) {
                 // getAllUsersdata();
             }
+            setProgress(100)
         } catch (error) {
             console.log(error)
         }

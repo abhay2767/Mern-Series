@@ -1,11 +1,19 @@
+/* eslint-disable react/prop-types */
 import photo from '../Images/Ragister.jpg'
 import { useAuth } from '../store/auth';
 import './Design.css'
 import Navbar from '../Component/Navbar'
+import { useEffect } from 'react';
 
-const Service = () => {
+const Service = ({setProgress}) => {
   const { serviceData } = useAuth();
-
+  useEffect(()=>{
+    setProgress(10)
+    setProgress(50)
+    setTimeout(()=>{
+      setProgress(100)
+    },1500);
+  },[])
   return (
     <>
     <Navbar/>

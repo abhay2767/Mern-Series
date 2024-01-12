@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useAuth } from '../store/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../Component/Navbar';
 
-const Contact = () => {
+const Contact = ({setProgress}) => {
   const navigate = useNavigate();
   const { fetchContactdata, Apipath } = useAuth()
   const [data, setData] = useState({
@@ -52,6 +52,13 @@ const Contact = () => {
       console.log(error)
     }
   }
+  useEffect(()=>{
+    setProgress(10)
+    setProgress(50)
+    setTimeout(()=>{
+      setProgress(100)
+    },1500);
+  },[])
 
   return (
     <>

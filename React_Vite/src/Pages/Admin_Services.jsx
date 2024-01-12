@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import '../Pages/Design.css'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../store/auth'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Admin_Services = () => {
+const Admin_Services = ({setProgress}) => {
   const navigate = useNavigate();
   const { AuthorizationToken,fetchData,Apipath} = useAuth();
   const [servicess, setServices] = useState({
@@ -47,7 +48,13 @@ const Admin_Services = () => {
       console.log(error)
     }
   }
-  
+  useEffect(()=>{
+    setProgress(10)
+    setProgress(50)
+    setTimeout(()=>{
+      setProgress(100)
+    },1500);
+  },[])
   return (
     <>
       <div className='serv'>

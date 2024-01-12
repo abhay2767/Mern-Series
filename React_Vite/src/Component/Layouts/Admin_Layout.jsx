@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link, Outlet } from 'react-router-dom';
 import { PiUsersThreeFill } from "react-icons/pi";
 import { TbMessages } from "react-icons/tb";
@@ -8,14 +9,19 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from '../Navbar';
 
-const Admin_Layout = () => {
+const Admin_Layout = ({ setProgress }) => {
     const { user, isLoading } = useAuth();
     console.log("User is :- " + JSON.stringify(user))
 
     let location = useLocation();
     useEffect(() => {
-    console.log(location.pathname)
-  }, [location])
+        setProgress(10)
+        console.log(location.pathname)
+        setProgress(50)
+        setTimeout(() => {
+            setProgress(100)
+        }, 1500);
+    }, [])/* if error [location] */
 
     if (isLoading) {
         return <h1>Loading..</h1>
@@ -24,10 +30,11 @@ const Admin_Layout = () => {
 
     if (!user.isAdmin) {
         return <Navigate to='/' />
+
     }
     return (
         <>
-     <Navbar/>
+            <Navbar />
             <nav className="Navbar">
                 <ul className="nav-list v-class-resp">
                     <Link to="/admin/users"><li><PiUsersThreeFill />Users</li></Link>
@@ -35,8 +42,8 @@ const Admin_Layout = () => {
                     <Link to="/admin/servicepage"><li><MdHomeRepairService />Services</li></Link>
                 </ul>
             </nav>
-            
-            {location.pathname==="/admin" ? <div className='bg1'></div> : <Outlet />}{/*<Outlet /> It is used when you use nested route so here thats the reason we have use this feature of React Router Dom */}
+
+            {location.pathname === "/admin" ? <div className='bg1'></div> : <Outlet />}{/*<Outlet /> It is used when you use nested route so here thats the reason we have use this feature of React Router Dom */}
         </>
     )
 }

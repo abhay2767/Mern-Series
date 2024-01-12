@@ -1,11 +1,12 @@
-import { useState } from "react"
+/* eslint-disable react/prop-types */
+import { useState,useEffect } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { useAuth } from "../store/auth";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../Component/Navbar'
 
-const Login = () => {
+const Login = ({setProgress}) => {
   const navigate = useNavigate();
   const { storeTokenInLs,Apipath } = useAuth();
   const [user, setUser] = useState({
@@ -45,6 +46,13 @@ const Login = () => {
       console.log(error)
     }
   }
+  useEffect(()=>{
+    setProgress(10)
+    setProgress(50)
+    setTimeout(()=>{
+      setProgress(100)
+    },1500);
+  },[])
 
   return (
     <>

@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import { useAuth } from '../store/auth'
 import '../Pages/Design.css'
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
 
-const Admin_Contacts = () => {
+const Admin_Contacts = ({setProgress}) => {
   const { contactData,Apipath } = useAuth();
   const {AuthorizationToken} = useAuth();
   const {fetchContactdata} =useAuth()
@@ -27,6 +29,13 @@ const Admin_Contacts = () => {
       console.log(error)
     }
   }
+  useEffect(()=>{
+    setProgress(10)
+    setProgress(50)
+    setTimeout(()=>{
+      setProgress(100)
+    },1500);
+  },[])
   
   return (
     <>

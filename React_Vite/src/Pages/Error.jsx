@@ -1,6 +1,15 @@
+/* eslint-disable react/prop-types */
 import Navbar from "../Component/Navbar"
+import { useEffect } from "react"
 
-const Error = () => {
+const Error = ({setProgress}) => {
+  useEffect(()=>{
+    setProgress(10)
+    setProgress(50)
+    setTimeout(()=>{
+      setProgress(100)
+    },1500);
+  },[])
   return (
     <>
     <Navbar/>

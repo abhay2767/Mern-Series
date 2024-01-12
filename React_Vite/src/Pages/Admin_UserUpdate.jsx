@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react"
 import { useAuth } from "../store/auth"
 import { useParams } from "react-router-dom";
@@ -5,7 +6,7 @@ import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
-const Admin_UserUpdate = () => {
+const Admin_UserUpdate = ({setProgress}) => {
     const navigate = useNavigate();
     const { AuthorizationToken,Apipath } = useAuth();
     const params = useParams();
@@ -19,6 +20,7 @@ const Admin_UserUpdate = () => {
     console.log("Data is:-"+data1)
 
     const getSingleUserData = async () => {
+        setProgress(10)
         try {
             const response = await fetch(`${Apipath}/api/admin/users/${params.id}`, {
                 method: "GET",
@@ -27,8 +29,10 @@ const Admin_UserUpdate = () => {
                 },
             })
             const data = await response.json();
+            setProgress(50)
             console.log("Single user data:-" + data.result)
             setdata(data.result)
+            setProgress(100)
         } catch (error) {
             console.log(error)
         }
