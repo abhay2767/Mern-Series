@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const AuthorizationToken = `Bearer ${token}`;
 
-    const Apipath = "http://localhost:5000";
+    const Apipath = import.meta.env.Server_Address || "http://localhost:5000";
 
     const fetchData = async () => {
         try {
