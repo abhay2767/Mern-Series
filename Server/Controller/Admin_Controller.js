@@ -4,6 +4,13 @@ const Service = require('../Model/Service_Model')
 const mongoose = require("mongoose")
 
 
+const AdminHome = async(req,res)=>{
+    try {
+        res.status(200).send("This is AdminHome page")
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 const GetAllUser = async (req, res) => {
     try {
@@ -110,9 +117,18 @@ const UpdateuserById=async(req,res)=>{
 const AddService = async(req,res)=>{
     try {
         const {service,description,price,provider} = req.body;
-        const serviceAddded = await Service.create({service,description,price,provider});
-        console.log(serviceAddded)
-        return res.status(200).json({message:"service Added",serviceAddded})
+
+        // const serviceAddded = await Service.create({service,description,price,provider});
+        const services = new Service({
+            service: service,
+            description: description,
+            price: price,
+            provider: provider,
+            images: req.file.filename
+        });
+        const serviceData = await services.save();
+        // const serviceId = serviceData._id;
+        return res.status(200).json({message:"service Added",serviceData})
         
     } catch (error) {
         next(error)
@@ -122,4 +138,4 @@ const AddService = async(req,res)=>{
 
 
 
-module.exports = { GetAllUser, GetAllContacts,DeleteContacts, DeleteUser, GetUserById, UpdateuserById,AddService };
+module.exports = { AdminHome,GetAllUser, GetAllContacts,DeleteContacts, DeleteUser, GetUserById, UpdateuserById,AddService };

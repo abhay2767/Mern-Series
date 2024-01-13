@@ -18,6 +18,10 @@ const serviceSchema = new Schema({
         type: String,
         required: true
     },
+    images:{
+        type:String,
+        required: true
+    }
 })
 
 const Service = new model("Service",serviceSchema);

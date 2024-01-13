@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const {home,ragister,login,user} = require('../Controller/Auth_Controller')
+const { home, ragister, login, user } = require('../Controller/Auth_Controller')
 const Auth_Controller = require('../Controller/Auth_Controller')
-const {signupSchema,loginSchema,emailSchema} = require('../Validators/Auth_Validator');
+const { signupSchema, loginSchema, emailSchema } = require('../Validators/Auth_Validator');
 const validate = require('../Middleware/Validator_Middleware')
 const Auth_Middleware = require('../Middleware/Auth_Middleware');
 const bodyParser = require('body-parser')
@@ -17,7 +17,7 @@ router.use(express.json())
 
 //This will helps to get the data from the form in 'views'
 router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({extended:true}))
+router.use(bodyParser.urlencoded({ extended: true }))
 
 const multer = require("multer");
 const path = require("path");
@@ -32,9 +32,9 @@ const storage = multer.diskStorage({
         const name = Date.now() + '-' + file.originalname;
         cb(null, name);
     }
-  });
+});
 
-  const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 
 router.route('/').get(home)
 /* router.get('/',(req,res)=>{
@@ -42,22 +42,22 @@ router.route('/').get(home)
 }) */
 
 //validate(signupchema) is a middleware which is used to validate user input is in a right formet or not.
-router.route('/ragister').post(upload.single('images'),validate(signupSchema), Auth_Controller.ragister)
+router.route('/ragister').post(upload.single('images'), validate(signupSchema), Auth_Controller.ragister)
 
 //validate(loginSchema) is a middleware which is used to validate user input is in a right formet or not.
-router.route('/login').post(validate(loginSchema),Auth_Controller.login) 
+router.route('/login').post(validate(loginSchema), Auth_Controller.login)
 
-router.route('/user').get(Auth_Middleware,Auth_Controller.user)
+router.route('/user').get(Auth_Middleware, Auth_Controller.user)
 
 //Sending mail to user ragistered email
 router.route('/mail-verification').get(Auth_Controller.mailVerification)
 
 //validate(emailSchema) is a middleware which is used to validate user input is in a right formet or not.
-router.route('/send-mail-verification').post(validate(emailSchema),Auth_Controller.SendMailVerification)
+router.route('/send-mail-verification').post(validate(emailSchema), Auth_Controller.SendMailVerification)
 
-router.route('/reset-password').post(validate(emailSchema),Auth_Controller.passwordReset)
+router.route('/reset-password').post(validate(emailSchema), Auth_Controller.passwordReset)
 
 router.route('/forget-passwordform').get(Auth_Controller.forgetPassword)
 router.route('/forget-passwordform').post(Auth_Controller.updatePassword)
 
-module.exports= router;
+module.exports = router;

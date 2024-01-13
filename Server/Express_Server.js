@@ -18,6 +18,7 @@ app.use(cors());
 app.use(express.json()); // Use express.json() instead of bodyParser.json()
 
 app.use('/api/',auth_router)
+app.use('/api/',admin_router)
 app.use('/api/auth', auth_router);
 app.use('/api/form', contact_router);
 app.use('/api/service', service_router);
