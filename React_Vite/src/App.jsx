@@ -7,6 +7,7 @@ import Login from "./Pages/Login"
 import Footer from "./Component/Footer"
 import Error from "./Pages/Error"
 import Logout from "./Pages/Logout"
+import MyAccount from "./Pages/MyAccount"
 import Reset_Password from "./Pages/Reset_Password"
 import Verify_Email from "./Pages/Verify_Email"
 
@@ -37,6 +38,7 @@ const App = () => {
       <Route path='/signup' element={<Signup setProgress={setProgress}/>} />
       <Route path='/login' element={<Login setProgress={setProgress}/>} />
       <Route path='/logout' element={<Logout />} />
+      <Route path='/myAccount' element={<MyAccount setProgress={setProgress}/>} />
       <Route path='/reset-password' element={<Reset_Password setProgress={setProgress}/>} />
       <Route path='/verify-email' element={<Verify_Email setProgress={setProgress}/>} />
       <Route path='*' element={<Error setProgress={setProgress}/>} />
