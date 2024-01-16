@@ -24,4 +24,9 @@ const emailSchema = z.object({
 
 })
 
-module.exports = {signupSchema,loginSchema,emailSchema};
+const validateOtp = z.object({
+    user_id: z.string({required_error:"user_id is required"}),
+    otp: z.string({required_error:"otp is required"})
+})
+
+module.exports = {signupSchema,loginSchema,emailSchema,validateOtp};

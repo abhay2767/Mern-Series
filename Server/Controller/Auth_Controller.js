@@ -7,6 +7,9 @@ const User = require('../Model/User_Model');
 const randamstring = require('randomstring');
 const resetepassFromModel = require('../Model/ResetPassword')
 
+const OTP = require('../Model/Otp')
+const {oneMinute,fiveMinute} = require('../Helper/Otp_Velidate')
+
 /* Controller:-
     In an express.js application , a 'controller' reders to a part of your code that is responsible for handling
     the application's logic.
@@ -252,6 +255,80 @@ const updatePassword = async (req, res) => {
     }
 }
 
+
+const OtpSend=async(req,res)=>{
+    try {
+        const { email } = req.body;
+        const userExist = await UserFromModel.findOne({ email: email })
+        if (!userExist) {
+            return res.status(404).json({ message: "Email Not Exist" })
+        }
+        if (userExist.is_verified == 1) {
+            return res.status(409).json({ message: "Email Already Verified" })
+        }
+        const r = Math.random()
+        const genOtp = Math.round(r*900000+100000) //6 dight under 1000000
+        console.log("Your code is:-"+genOtp)
+
+        const oldLOtp = await OTP.findOne({user_id:userExist._id});
+        if(oldLOtp){
+            const sendOtpNext = await oneMinute(oldLOtp.timestamp);
+            if(!sendOtpNext){
+                return res.status(400).json({success:false, message:"Re-send Otp after 1 min"})
+            }
+        }
+
+        const cDate = new Date();
+        await OTP.findOneAndUpdate(
+            {user_id:userExist._id},
+            {otp: genOtp, timestamp: new Date(cDate.getTime())},
+            {upsert:true,new:true,setDefaultsOnInsert:true} //upsert:true means when we want latest data then we use this and 
+            //new:true so this will use when we crete new data and setDefaultsOnInsert:true
+
+        )
+
+        const msg = '<p> Hii <b>'+userExist.name+'</b>,</br><h4>Your one time password is:- '+genOtp+'</h4>  </p>'
+        mailer.sendMail(userExist.email,'Otp-verification',msg)
+
+        return res.status(200).json({success:true, message:"Otp send successfuly"})
+    } catch (error) {
+        console.log(error)
+        
+    }
+}
+
+const OtVerify = async(req,res)=>{
+    try {
+        const {user_id, otp} = req.body;
+        const checkotpData = await OTP.findOne({user_id,otp})
+        if(!checkotpData){
+            return res.status(400).json({success:false, message:"You enterded wrong otp"})
+        }
+        const isOtpExpired = await fiveMinute(checkotpData.timestamp)
+        if(isOtpExpired){
+            return res.status(400).json({success:false, message:"OTP is expired"})
+        }
+
+        await User.findByIdAndUpdate({_id:user_id},{
+            is_verified:1
+        })
+        
+        return res.status(200).json({success:true,message:"Account is verified Successfully"})
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 module.exports = {
-    home, ragister, login, user, mailVerification, SendMailVerification, passwordReset, forgetPassword, updatePassword
+    home, 
+    ragister, 
+    login, 
+    user, 
+    mailVerification, 
+    SendMailVerification, 
+    passwordReset, 
+    forgetPassword, 
+    updatePassword,
+    OtpSend,
+    OtVerify
 }
