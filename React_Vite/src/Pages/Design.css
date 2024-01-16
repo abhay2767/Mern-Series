@@ -222,3 +222,23 @@ form{
   display: flex;
   justify-content: space-between;
 }
+
+
+
+/* Search bar in service page */
+.searchbar{
+  display: flex;
+  justify-content: center;
+}
+.search-container{
+  width: 90%;
+  min-width: 50%;
+  margin: 20px;
+  display: inline-flex;
+}
+.search-button{
+  margin-left: 5px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: black;
+}

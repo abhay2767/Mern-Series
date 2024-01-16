@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState,useEffect } from 'react';
 import { useAuth } from '../store/auth';
 import { useNavigate } from 'react-router-dom';
@@ -13,6 +14,17 @@ const Contact = ({setProgress}) => {
     email: "",
     message: "",
   })
+
+
+/* Change the first latter of word */
+  const capitalize = (word) => {
+    const lower = word.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }
+  /* change name in title */
+  document.title = `${capitalize('contact')} - React_veet`;
+
+
 
   const [userdata, setuserData] = useState(true)
   const { user } = useAuth();
