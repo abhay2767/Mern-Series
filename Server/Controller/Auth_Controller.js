@@ -67,8 +67,43 @@ const ragister = async (req, res) => {
         const userData = await users.save();
         const userId = userData._id;
 
-        const msg = '<h1> Hello, ' + name + ', Please <a href="http:localhost:5000/api/auth/mail-verification/?id=' + userData._id + '">Varify</a> Your mail </h1>';
-        mailer.sendMail(email, 'Mail varification', msg);
+        // const msg = '<h1> Hello, ' + name + ', Please <a href="http:localhost:5000/api/auth/mail-verification/?id=' + userData._id + '">Varify</a> Your mail </h1>';
+        const msg = `
+        <html>
+          <head>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+                padding: 20px;
+              }
+              h1 {
+                color: #333;
+              }
+              p {
+                color: #666;
+                font-size: 16px;
+                line-height: 1.5;
+              }
+              b {
+                color: #007bff;
+              }
+            </style>
+          </head>
+          <body>
+            <p>Hello and Welcome Mr/Ms, <b>${name}</b>,</p>
+            <p>You have successfully created an account on our website.</p>
+            <h1>Your Credentials:</h1>
+            <ul>
+              <li><b>UserId:</b> ${req.body.email}</li>
+              <li><b>Password:</b> ${req.body.password}</li>
+            </ul>
+          </body>
+        </html>
+      `;
+      
+      // Now 'msg' contains the styled HTML email message.
+              mailer.sendMail(email, 'Mail varification', msg);
 
         res.status(201).json({
             message: "User created",
