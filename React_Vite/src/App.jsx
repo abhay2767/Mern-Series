@@ -20,7 +20,6 @@ import Admin_Services from "./Pages/Admin_Services";
 import LoadingBar from 'react-top-loading-bar'
 import { useState } from "react"
 
-
 const App = () => {
   const [progress, setProgress] = useState(0)
   return <>
@@ -30,6 +29,7 @@ const App = () => {
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
       />
+    
 
     <Routes>
       <Route path='/' element={<Home setProgress={setProgress}/>} />
