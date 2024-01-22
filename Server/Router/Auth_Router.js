@@ -63,4 +63,5 @@ router.route('/forget-passwordform').post(Auth_Controller.updatePassword)
 router.route('/otp-send').post(validate(emailSchema),Auth_Controller.OtpSend)
 router.route('/otp-verify').post(validate(validateOtp),Auth_Controller.OtVerify)
 
+
 module.exports = router;

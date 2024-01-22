@@ -354,6 +354,7 @@ const OtVerify = async(req,res)=>{
     }
 }
 
+
 module.exports = {
     home, 
     ragister, 
