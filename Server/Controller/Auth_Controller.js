@@ -76,6 +76,9 @@ const ragister = async (req, res) => {
                 font-family: Arial, sans-serif;
                 background-color: #f5f5f5;
                 padding: 20px;
+                border: 2px solid black;
+                display:flex;
+                justify-content:center;
               }
               h1 {
                 color: #333;
@@ -95,15 +98,15 @@ const ragister = async (req, res) => {
             <p>You have successfully created an account on our website.</p>
             <h1>Your Credentials:</h1>
             <ul>
-              <li><b>UserId:</b> ${req.body.email}</li>
-              <li><b>Password:</b> ${req.body.password}</li>
+              <li><b>UserId:</b> ${email}</li>
+              <li><b>Password:</b> ${password}</li>
             </ul>
           </body>
         </html>
       `;
       
       // Now 'msg' contains the styled HTML email message.
-              mailer.sendMail(email, 'Mail varification', msg);
+              mailer.sendMail(email, 'Wellcome Mail', msg);
 
         res.status(201).json({
             message: "User created",
@@ -233,7 +236,8 @@ const passwordReset = async (req, res) => {
 
         const randomStr = randamstring.generate();
         console.log("Str is:-" + randomStr)
-        const msg = '<p>Hii ' + userExist.name + ', Please Click <a href = "http://localhost:5000/api/auth/forget-passwordform/?token=' + randomStr + '">here</a>to reset your password.<p>';
+        
+        const msg = '<header style="font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh;"><div style="background-color: #ffffff; padding: 20px; border: 1px solid #ccc; border-radius: 8px; text-align: center;"><h3>Hello and Wellcome Mr/Ms, <b style="color: #007bff;">'+userExist.name+'</b></h3><h2>Action Required: Reset-Password request</h2><p>You are receiving this email because a request was made for reseting your password so this can be used for authentication.</p><p>Please click on the button given below for Reset the Password:</p><a href = "http://localhost:5000/api/auth/forget-passwordform/?token=' + randomStr + '"><button style="font-size: 24px; font-weight: bold; background-color: #D22B2B; border: 2px solid black; border-radius: 10px; cursor: pointer; margin-top: 15px; color: #000000;">Reset Password</button></a><p>If you did not request this change, please change your password or use the email: <b>abhaydubey2767@gmail.com</b> to contact us.</p></div></header>'
         await resetepassFromModel.deleteMany({ user_id: userExist._id })
         const passReset = new resetepassFromModel({
             user_id: userExist._id,
@@ -322,7 +326,8 @@ const OtpSend=async(req,res)=>{
 
         )
 
-        const msg = '<p> Hii <b>'+userExist.name+'</b>,</br><h4>Your one time password is:- '+genOtp+'</h4>  </p>'
+        
+        const msg = '<header style="font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh;"><div style="background-color: #ffffff; padding: 20px; border: 1px solid #ccc; border-radius: 8px; text-align: center;"><h3>Hello and Wellcome Mr/Ms, <b style="color: #007bff;">'+userExist.name+'</b></h3><h2>Action Required: One-Time Verification Code</h2><p>You are receiving this email because a request was made for a one-time code that can be used for authentication.</p><p>Please enter the following code for verification:</p><div style="font-size: 24px; font-weight: bold; margin-top: 15px; color: #3498db;">' + genOtp + '</div><p>If you did not request this change, please change your password or use the email: <b>abhaydubey2767@gmail.com</b> to contact us.</p></div></header>'
         mailer.sendMail(userExist.email,'Otp-verification',msg)
 
         return res.status(200).json({success:true, message:"Otp send successfuly"})

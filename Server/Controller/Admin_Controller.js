@@ -57,22 +57,23 @@ const DeleteContacts = async(req,res)=>{
     }
 }
 
-const DeleteUser = async(req, res) => {
+const DeleteUser = async (req, res) => {
     try {
-
         const id = req.params.id;
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            console.log("User Not found")
-            return res.status(404).json({message:"User Not found"}); // Return null if the ID is not valid
+            console.log("User Not found");
+            return res.status(404).json({ message: "User Not found" });
         }
+
         await User.findByIdAndDelete(id);
-        console.log("Delete user "+id)
-        return res.status(200).json({message:"User deleted"})
+        console.log("Delete user " + id);
+        return res.status(200).json({ message: "User deleted" });
     } catch (error) {
         console.error("Error:", error);
-        next(error)
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 };
+
 
 const GetUserById = async(req,res)=>{
     try {
@@ -94,25 +95,27 @@ const GetUserById = async(req,res)=>{
     }
 }
 
-const UpdateuserById=async(req,res)=>{
+const UpdateuserById = async (req, res, next) => {
     try {
         const id = req.params.id;
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            console.log("User Not found")
-            return res.status(404).json({message:"User Not found"}); // Return null if the ID is not valid
+            console.log("User Not found");
+            return res.status(404).json({ message: "User Not found" });
         }
 
         const updatedUserData = req.body;
-        const updatedUser = await User.updateOne({
-            $set: updatedUserData
-        });
-        return res.status(200).json(updatedUser)
+        const updatedUser = await User.updateOne(
+            { _id: id }, // Specify the filter to match the user by ID
+            { $set: updatedUserData }
+        );
 
+        return res.status(200).json(updatedUser);
     } catch (error) {
         console.error("Error:", error);
-        next(error)
+        next(error);
     }
-}
+};
+
 
 const AddService = async(req,res)=>{
     try {
