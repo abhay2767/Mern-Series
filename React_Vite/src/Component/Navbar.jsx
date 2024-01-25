@@ -21,7 +21,7 @@ const Navbar = () => {
                         : "Guest"}{isLoggedIn && user.is_verified == 1 ? <MdVerified style={style} /> : ""}<Link to='/verify-email'>{user && user.is_verified !== 1 && isLoggedIn ? <b style={style1}>(verify your account)</b> : ""}</Link></span></p>
                 </ul>
                 <ul className="nav-list v-class-resp">
-                    <Link to='/myAccount'>
+                    <Link to='/myAccount/profile'>
                         {
                             user && isLoggedIn && !isLoading ? <img className="profileImg" src={`${Apipath}/api/images/${user.images}`} alt="profile" />
                                 :
