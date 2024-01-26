@@ -59,6 +59,7 @@ const Service = ({ setProgress }) => {
       <div key={index} className="card">
         <img src={`${Apipath}/api/images/${currdata.images}`} alt="" height={100} width={250} />
         
+        
         <label className="lable" htmlFor="service">Service:</label>
         <p className='para'>{currdata.service}</p>
 

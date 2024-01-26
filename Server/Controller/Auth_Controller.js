@@ -62,7 +62,6 @@ const ragister = async (req, res) => {
             isAdmin: isAdmin,
             is_verified: is_verified,
             images: req.file.filename
-
         });
         const userData = await users.save();
         const userId = userData._id;
