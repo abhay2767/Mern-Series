@@ -5,6 +5,10 @@ const imageSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User_Model' //'User'- this is 'User' model
     }, 
+    name:{
+        type:String,
+        required:true
+    },
     images:{
         type:String,
         required:true

@@ -79,6 +79,7 @@ const Add_image=async(req,res)=>{
     try {
         const image = new Images({
             user:req.user.id,
+            name:req.body.name,
             images: req.file.filename
         })
 
@@ -127,6 +128,7 @@ const Add_document= async(req,res)=>{
         console.log("Inside")
         const DocSchema = await new Documents({
             user: userdata.id,
+            name: req.body.name,
             doc:req.file.filename
         })
 
