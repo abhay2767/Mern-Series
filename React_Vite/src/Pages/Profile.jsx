@@ -2,9 +2,10 @@
 import { useAuth } from "../store/auth"
 import { useEffect } from "react"
 import './Design.css'
+import { Navigate } from 'react-router-dom';
 
 const Profile = ({ setProgress }) => {
-  const { user, Apipath } = useAuth();
+  const { user, Apipath, isLoggedIn, isLoading } = useAuth();
   useEffect(() => {
     setProgress(10)
     setProgress(50)
@@ -12,6 +13,17 @@ const Profile = ({ setProgress }) => {
       setProgress(100)
     }, 1500);
   }, [])
+
+
+  if (!isLoggedIn) {
+    return <Navigate to='/login' />
+  }
+  if (isLoading) {
+    return <h1>Loading..</h1>
+  }
+  if (!user) {
+    return <Navigate to='/login' />
+  }
   return (
     <>
       <div className="container">

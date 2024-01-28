@@ -5,9 +5,10 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../store/auth";
 import Navbar from '../Component/Navbar'
+import { Navigate } from 'react-router-dom';
 
 const Reset_Password = ({setProgress}) => {
-  const {Apipath} = useAuth();
+  const {Apipath,isLoggedIn,isLoading} = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -49,6 +50,12 @@ const Reset_Password = ({setProgress}) => {
       setProgress(100)
     },1500);
   },[])
+  if (isLoggedIn) {
+    return <Navigate to='/' />
+  }
+  if (isLoading) {
+    return <h1>Loading..</h1>
+  }
 
   return (
     <>

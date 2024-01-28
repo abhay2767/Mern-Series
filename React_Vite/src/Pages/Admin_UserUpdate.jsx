@@ -41,7 +41,7 @@ const Admin_UserUpdate = ({setProgress}) => {
      const handleSubmit = async () => {
         // e.preventDefault()
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/users/update/${params.id}`, {
+            const response = await fetch(`${Apipath}/api/admin/users/update/${params.id}`, {
                 method: "PATCH",
                 headers: {
                     Authorization: AuthorizationToken,

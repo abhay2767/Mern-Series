@@ -5,10 +5,11 @@ import { useAuth } from "../store/auth";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../Component/Navbar'
+import { Navigate } from 'react-router-dom';
 
 const Signup = ({setProgress}) => {
   const navigate = useNavigate();
-  const { storeTokenInLs, Apipath } = useAuth();
+  const { storeTokenInLs, Apipath,isLoggedIn,isLoading,user } = useAuth();
 
   /* const [user, setUser] = useState({
     name: "",
@@ -80,6 +81,16 @@ const Signup = ({setProgress}) => {
       setProgress(100)
     },1500);
   },[])
+
+  if (isLoggedIn) {
+    return <Navigate to='/' />
+  }
+  if (isLoading) {
+    return <h1>Loading..</h1>
+  }
+  if (!user) {
+    return <Navigate to='/login' />
+  }
 
   return (
     <>

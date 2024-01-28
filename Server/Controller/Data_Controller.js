@@ -1,6 +1,7 @@
 const Notes = require('../Model/Note_Model')
 const Images = require('../Model/Image_Model')
 const Documents = require('../Model/Doc_Model')
+const mongoose = require("mongoose")
 
 const Add_notes = async (req, res) => {
     try {
@@ -27,6 +28,22 @@ const Get_notes= async(req,res)=>{
         const notes = await Notes.find({ user:userdata.id }) //Here 'user: req.user.id' cames from 'fetchUser'
         // console.log(notes)
         res.json(notes)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: "Internal serer Error" })
+    }
+}
+
+const Get_noteById=async(req,res)=>{
+    try {
+        const id = req.params.id;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            console.log("Note Not found")
+            return res.status(404).json({message:"Note Not found"}); // Return null if the ID is not valid
+        }
+        const result = await Notes.findById(id)
+        console.log("Note is:- "+result)
+        return res.status(200).json({result})
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: "Internal serer Error" })
@@ -170,4 +187,4 @@ const Delete_document=async(req,res)=>{
     }
 }
 
-module.exports = { Add_notes,Get_notes,Update_notes,Delete_notes,Add_image,Get_image,Delete_Image,Add_document,Get_document,Delete_document }
+module.exports = { Add_notes,Get_notes,Get_noteById,Update_notes,Delete_notes,Add_image,Get_image,Delete_Image,Add_document,Get_document,Delete_document }

@@ -10,19 +10,23 @@
   margin-left: 70px;
   width: 250px;
 }
+
 h2 {
   font-size: 25px;
 }
+
 img {
   max-width: 100%;
   height: auto;
   border-radius: 4px;
   margin-top: 8px;
 }
+
 .lable {
   font-weight: bold;
 }
-.para{
+
+.para {
   color: black;
 }
 
@@ -33,36 +37,44 @@ img {
 .admin-users-section {
   padding: 20px;
 }
+
 .admin-users-section .container h1 {
   font-size: 24px;
   margin-bottom: 20px;
 }
+
 .admin-users-section .admin-users {
   margin-top: 20px;
 }
+
 .admin-users-section table {
   width: 100%;
   border-collapse: collapse;
 }
+
 .admin-users-section th {
   background-color: #f2f2f2;
   border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
 }
+
 .admin-users-section td {
   border: 1px solid #ddd;
   padding: 10px;
 }
+
 .admin-users-section tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
 .admin-users-section td:nth-child(4),
 .admin-users-section td:nth-child(5) {
   cursor: pointer;
   color: #007bff;
   text-decoration: underline;
 }
+
 .admin-users-section td:nth-child(4):hover,
 .admin-users-section td:nth-child(5):hover {
   color: #0056b3;
@@ -103,6 +115,7 @@ img {
   border: 2px solid #cf1919;
   transition: background-color 0.3s ease;
 }
+
 .button1 {
   margin-top: 5px;
   display: inline-block;
@@ -122,14 +135,16 @@ img {
 
 /* Admin Add Services */
 
-.serv{
+.serv {
   border: 2px solid green;
   padding: 25px;
   margin: 25px;
 }
+
 label {
   margin-bottom: 8px;
 }
+
 input,
 textarea {
   width: 100%;
@@ -139,6 +154,7 @@ textarea {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
 button {
   background-color: #4caf50;
   color: #fff;
@@ -147,12 +163,14 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
-.serviceFoem{
+
+.serviceFoem {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-form{
+
+form {
   padding: 20px;
   margin: 20px;
   border: 2px solid black;
@@ -162,10 +180,11 @@ form{
 
 
 /* Forget Password Link */
-.profile{
+.profile {
   border-radius: 50%;
 }
-.resetpass{
+
+.resetpass {
   color: black;
   display: flex;
   justify-content: end;
@@ -176,16 +195,245 @@ form{
 /* Home Page */
 .bg {
   background-image: url("../Images/pho.jpg");
-  height: 80vh; 
+  height: 80vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
 }
+
+.notes {
+  width: 70vw;
+  height: 65vh;
+  background-color: #02101f;
+  border-radius: 20px;
+}
+
+.notes h1 {
+  margin-top: 20px;
+  color: white;
+}
+
+.notes label {
+  color: white;
+  font-size: 20px;
+}
+
+.A {
+  display: flex;
+  justify-content: center;
+}
+
+.button2 {
+  color: white;
+  width: 20%;
+  background-color: #4caf50;
+  cursor: pointer;
+}
+
+.contanier {
+  /* border: 2px solid red; */
+  width: 90vw;
+  height: 70vh;
+  overflow: auto;
+  /* background-color: #0b2847; */
+  background: rgba(0, 0, 0, 0); 
+  border-radius: 20px;
+}
+
+.card1 {
+  color: wheat;
+  width: 220px;
+  display: inline-flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 16px;
+  margin-left: 50px;
+  height: 250px;
+  background-color: rgb(3, 3, 46);
+}
+
+.card1 h2 {
+  padding: 7px;
+}
+
+.card1 b {
+  font-size: 20px;
+}
+
+.cart1-border{
+  height: 200px;
+}
+
+.icons {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+
+.card4 {
+  color: wheat;
+  width: 220px;
+  display: inline-flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 16px;
+  margin-left: 50px;
+  height: 250px;
+  background-color: rgb(3, 3, 46);
+}
+.card4 h2{
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+
+ /* Images Modal */
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+
+
+.images{
+  height: 70vh;
+  width: 90vw;
+  overflow: auto;
+}
+
+.card2{
+  color: wheat;
+  width: 220px;
+  display: inline-flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 16px;
+  margin-left: 50px;
+  height: 250px;
+  background-color: rgb(3, 3, 46);
+}
+
+
+
+/* Home page  */
+.images3{
+  height: 70vh;
+  width: 90vw;
+  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card3{
+  color: wheat;
+  width: 300px;
+  display: inline-flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  height: 350px;
+  margin: 10px;
+  background-color: rgb(3, 3, 46);
+}
+
+
 
 /* Admin Page */
 .bg1 {
   background-image: url("../Images/phos.jpg");
-  height: 65vh; 
+  height: 65vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -195,30 +443,36 @@ form{
 
 /* My Account */
 
-.account{
+.account {
   display: flex;
   justify-content: center;
   margin: 10px;
   width: 100%;
   height: 150px;
-  
+
 }
-.user{
+
+.user {
   border: 2px solid black;
   border-radius: 50%;
 }
-.row1{
+
+.row1 {
   margin-top: 40px;
 }
+
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-.col-25, .col-75, input[type=submit] {
-  width: 100%;
-  margin-top: 0;
-}
+
+  .col-25,
+  .col-75,
+  input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
 }
 
-.row-btn{
+.row-btn {
   display: flex;
   justify-content: space-between;
 }
@@ -226,19 +480,22 @@ form{
 
 
 /* Search bar in service page */
-.searchbar{
+.searchbar {
   display: flex;
   justify-content: center;
 }
-.search-container{
+
+.search-container {
   width: 90%;
   min-width: 50%;
   margin: 20px;
   display: inline-flex;
 }
-.search-button{
+
+.search-button {
   margin-left: 5px;
   height: 35px;
   border-radius: 50%;
   background-color: black;
 }
+

@@ -4,28 +4,13 @@ import './Design.css'
 import Navbar from '../Component/Navbar'
 import { useEffect, useState } from 'react';
 import { FaSearch } from "react-icons/fa";
+import { Navigate } from 'react-router-dom';
 
 const Service = ({ setProgress }) => {
-  const { serviceData, Apipath } = useAuth();
+  const { serviceData, Apipath, isLoggedIn, isLoading, user } = useAuth();
   console.log(serviceData)
   const [SData, setSData] = useState('')
   const [searchdata, setsearchdata] = useState('')
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const response = await fetch(`${Apipath}/api/service/servicedata/search`, {
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({search:SData})
-    })
-    const json = await response.json()
-    setsearchdata(json.service_data)
-  }
-
-
 
   useEffect(() => {
     setProgress(10)
@@ -35,6 +20,33 @@ const Service = ({ setProgress }) => {
     }, 1500);
   }, [])
 
+
+  if (!isLoggedIn) {
+    return <Navigate to='/login' />
+  }
+  if (isLoading) {
+    return <h1>Loading..</h1>
+  }
+  if (!user) {
+    return <Navigate to='/login' />
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const response = await fetch(`${Apipath}/api/service/servicedata/search`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ search: SData })
+    })
+    const json = await response.json()
+    setsearchdata(json.service_data)
+  }
+
+
+
+  
   const capitalize = (word) => {
     const lower = word.toLowerCase();
     return lower.charAt(0).toUpperCase() + lower.slice(1);
@@ -47,35 +59,35 @@ const Service = ({ setProgress }) => {
       <form method='POST'>
         <div className='searchbar'>
           <div className="search-container">
-            <input type="text" id="search-input" value={SData} onChange={(e)=>{setSData(e.target.value);}} placeholder="Search services..." />
+            <input type="text" id="search-input" value={SData} onChange={(e) => { setSData(e.target.value); }} placeholder="Search services..." />
             <button className="search-button" onClick={handleSubmit}><FaSearch /></button>
           </div>
         </div>
-      
 
-      {
-  searchdata ? (
-    searchdata && searchdata.map((currdata, index) => (
-      <div key={index} className="card">
-        <img src={`${Apipath}/api/images/${currdata.images}`} alt="" height={100} width={250} />
-        
-        
-        <label className="lable" htmlFor="service">Service:</label>
-        <p className='para'>{currdata.service}</p>
 
-        <label className="lable" htmlFor="description">Description:</label>
-        <p className='para'>{currdata.description}</p>
+        {
+          searchdata ? (
+            searchdata && searchdata.map((currdata, index) => (
+              <div key={index} className="card">
+                <img src={`${Apipath}/api/images/${currdata.images}`} alt="" height={100} width={250} />
 
-        <label className="lable" htmlFor="price">Price:</label>
-        <p className='para'>{currdata.price}</p>
 
-        <label className="lable" htmlFor="provider">Provider:</label>
-        <p className='para'>{currdata.provider}</p>
-      </div>
-    ))
-  ) : "Data not found"
-}
-</form>
+                <label className="lable" htmlFor="service">Service:</label>
+                <p className='para'>{currdata.service}</p>
+
+                <label className="lable" htmlFor="description">Description:</label>
+                <p className='para'>{currdata.description}</p>
+
+                <label className="lable" htmlFor="price">Price:</label>
+                <p className='para'>{currdata.price}</p>
+
+                <label className="lable" htmlFor="provider">Provider:</label>
+                <p className='para'>{currdata.provider}</p>
+              </div>
+            ))
+          ) : "Data not found"
+        }
+      </form>
 
 
 

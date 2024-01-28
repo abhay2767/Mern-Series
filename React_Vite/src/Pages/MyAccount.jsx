@@ -2,9 +2,20 @@
 import Navbar from "../Component/Navbar"
 import './Design.css'
 import { Link,Outlet } from "react-router-dom"
-
+import { Navigate } from 'react-router-dom';
+import { useAuth } from "../store/auth";
 
 const MyAccount = () => {
+    const {user,isLoggedIn,isLoading} = useAuth();
+    if(!isLoggedIn){
+        return <Navigate to='/login' />
+    }
+    if (isLoading) {
+        return <h1>Loading..</h1>
+    }
+    if (!user) {
+        return <Navigate to='/login' />
+    }
 
     return (
         <>

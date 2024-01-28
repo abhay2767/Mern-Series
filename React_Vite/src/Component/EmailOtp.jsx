@@ -3,13 +3,24 @@ import OtpInput from "./OtpInput";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../store/auth";
+import { Navigate } from 'react-router-dom';
 
 const EmailOtp = () => {
-    const {Apipath,user} = useAuth();
+    const {Apipath,user,isLoggedIn,isLoading} = useAuth();
     const [emailId, setEmailId] = useState(user.email);
     const [showOtpField, setShowOtpField] = useState(false);
     const [otpData, setotpData] = useState('')
     console.log(user._id)
+
+    if(!isLoggedIn){
+        return <Navigate to='/login' />
+    }
+    if (isLoading) {
+        return <h1>Loading..</h1>
+    }
+    if (!user) {
+        return <Navigate to='/login' />
+    }
 
     const handleInput = (e) => {
         setEmailId(e.target.value);

@@ -36,6 +36,7 @@ const upload = multer({ storage: storage });
 
 router.route('/add-notes').post(Auth_Middleware,Data_Controller.Add_notes)
 router.route('/get-notes').get(Auth_Middleware,Data_Controller.Get_notes)
+router.route('/get-current-note/:id').get(Auth_Middleware,Data_Controller.Get_noteById)
 router.route('/update-notes/:id').patch(Auth_Middleware,Data_Controller.Update_notes)
 router.route('/delete-notes/:id').delete(Auth_Middleware,Data_Controller.Delete_notes)
 

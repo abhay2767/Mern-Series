@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 import Navbar from '../Navbar';
 
 const Admin_Layout = ({ setProgress }) => {
-    const { user, isLoading } = useAuth();
+    const { user, isLoading ,isLoggedIn} = useAuth();
     console.log("User is :- " + JSON.stringify(user))
 
     let location = useLocation();
@@ -23,15 +23,18 @@ const Admin_Layout = ({ setProgress }) => {
         }, 1500);
     }, [])/* if error [location] */
 
+
+    if(!isLoggedIn){
+        return <Navigate to='/login' />
+    }
     if (isLoading) {
         return <h1>Loading..</h1>
 
     }
-
     if (!user.isAdmin) {
         return <Navigate to='/' />
-
     }
+
     return (
         <>
             <Navbar />

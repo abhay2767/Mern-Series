@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom"
 import Home from "./Pages/Home"
 import Notes from "./Pages/Notes"
+import Notes_Update from "./Pages/Notes_Update"
 import Images from "./Pages/Images"
 import Documents from "./Pages/Documents"
 
@@ -44,6 +45,7 @@ const App = () => {
     <Routes>
       <Route path='/' element={<Home setProgress={setProgress} />} >
         <Route path='notes' element={<Notes setProgress={setProgress} />} />
+        <Route path='notes/:id/edit' element={<Notes_Update setProgress={setProgress} />} />
         <Route path='images' element={<Images setProgress={setProgress} />} />
         <Route path='documents' element={<Documents setProgress={setProgress} />} />
       </Route>
