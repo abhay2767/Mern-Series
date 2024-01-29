@@ -7,8 +7,9 @@
   border-radius: 8px;
   padding: 15px;
   margin: 16px;
-  margin-left: 70px;
+  margin-left: 30px;
   width: 250px;
+  background-color: white;
 }
 
 h2 {
@@ -239,7 +240,7 @@ form {
   height: 70vh;
   overflow: auto;
   /* background-color: #0b2847; */
-  background: rgba(0, 0, 0, 0); 
+  background: rgba(0, 0, 0, 0);
   border-radius: 20px;
 }
 
@@ -265,14 +266,15 @@ form {
   font-size: 20px;
 }
 
-.cart1-border{
-  height: 200px;
+.card1-border {
+  height: 400px;
+  border: 2px;
 }
+
 
 .icons {
   display: flex;
   justify-content: space-between;
-
 }
 
 
@@ -289,34 +291,46 @@ form {
   height: 250px;
   background-color: rgb(3, 3, 46);
 }
-.card4 h2{
+
+.card4 h2 {
   padding: 5px;
   margin-bottom: 10px;
 }
 
 
- /* Images Modal */
+/* Images Modal */
 #myImg {
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-#myImg:hover {opacity: 0.7;}
+#myImg:hover {
+  opacity: 0.7;
+}
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9);
+  /* Black w/ opacity */
 }
 
 /* Modal Content (image) */
@@ -340,7 +354,8 @@ form {
 }
 
 /* Add Animation */
-.modal-content, #caption {  
+.modal-content,
+#caption {
   -webkit-animation-name: zoom;
   -webkit-animation-duration: 0.6s;
   animation-name: zoom;
@@ -348,13 +363,23 @@ form {
 }
 
 @-webkit-keyframes zoom {
-  from {-webkit-transform:scale(0)} 
-  to {-webkit-transform:scale(1)}
+  from {
+    -webkit-transform: scale(0)
+  }
+
+  to {
+    -webkit-transform: scale(1)
+  }
 }
 
 @keyframes zoom {
-  from {transform:scale(0)} 
-  to {transform:scale(1)}
+  from {
+    transform: scale(0)
+  }
+
+  to {
+    transform: scale(1)
+  }
 }
 
 /* The Close Button */
@@ -376,7 +401,7 @@ form {
 }
 
 /* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
+@media only screen and (max-width: 700px) {
   .modal-content {
     width: 100%;
   }
@@ -384,13 +409,13 @@ form {
 
 
 
-.images{
+.images {
   height: 70vh;
   width: 90vw;
   overflow: auto;
 }
 
-.card2{
+.card2 {
   color: wheat;
   width: 220px;
   display: inline-flex;
@@ -407,7 +432,7 @@ form {
 
 
 /* Home page  */
-.images3{
+.images3 {
   height: 70vh;
   width: 90vw;
   overflow: auto;
@@ -415,7 +440,8 @@ form {
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.card3{
+
+.card3 {
   color: wheat;
   width: 300px;
   display: inline-flex;
@@ -499,3 +525,22 @@ form {
   background-color: black;
 }
 
+/* Error Page  */
+/* Add your custom CSS styles here */
+.error-container {
+  text-align: center;
+  height: 30vh;
+  margin-top: 70px;
+}
+
+.error-container h1 {
+  font-size: 48px;
+  color: #ff0000;
+  /* Red color for emphasis */
+}
+
+.error-container p {
+  font-size: 24px;
+  color: #333;
+  /* Dark grey color for text */
+}

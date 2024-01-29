@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Admin_Users = ({setProgress}) => {
-    const { AuthorizationToken,Apipath } = useAuth();
+const Admin_Users = ({ setProgress }) => {
+    const { AuthorizationToken, Apipath } = useAuth();
     const [users, setUsers] = useState([])
     const getAllUsersdata = async () => {
         setProgress(10)
         try {
-            const response = await fetch( `${Apipath}/api/admin/users`, {
+            const response = await fetch(`${Apipath}/api/admin/users`, {
                 method: "GET",
                 headers: {
                     Authorization: AuthorizationToken,
@@ -21,7 +21,7 @@ const Admin_Users = ({setProgress}) => {
             setProgress(50)
             const data = await response.json();
             setUsers(data)
-            console.log('Users ' + data)
+            // console.log('Users ' + data)
 
             if (response.ok) {
                 // getAllUsersdata();
@@ -35,21 +35,28 @@ const Admin_Users = ({setProgress}) => {
         getAllUsersdata();
     }, [])
 
+    const capitalize = (word) => {
+        const lower = word.toLowerCase();
+        return lower.charAt(0).toUpperCase() + lower.slice(1);
+    }
+    /* change name in title */
+    document.title = `${capitalize('Admin/Users')} - React_veet`;
+
     const deleteUser = async (id) => {
         try {
-            console.log("In" + id)
+            // console.log("In" + id)
             const response = await fetch(`${Apipath}/api/admin/users/delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: AuthorizationToken,
                 },
             });
-            const data = await response.json()
-            console.log(`User After delete${data}`)
+            await response.json()
+            // console.log(`User After delete${data}`)
             getAllUsersdata();
             toast.success("User Deleted succussfully")
         } catch (error) {
-            console.log("This is error" + error)
+            console.log(error)
         }
     }
 

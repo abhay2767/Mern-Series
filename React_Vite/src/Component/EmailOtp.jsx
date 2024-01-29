@@ -4,19 +4,20 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../store/auth";
 import { Navigate } from 'react-router-dom';
+import LoadingSpiner from "./LoadingSpiner";
 
 const EmailOtp = () => {
-    const {Apipath,user,isLoggedIn,isLoading} = useAuth();
+    const { Apipath, user, isLoggedIn, isLoading } = useAuth();
     const [emailId, setEmailId] = useState(user.email);
     const [showOtpField, setShowOtpField] = useState(false);
     const [otpData, setotpData] = useState('')
-    console.log(user._id)
+    // console.log(user._id)
 
-    if(!isLoggedIn){
+    if (!isLoggedIn) {
         return <Navigate to='/login' />
     }
     if (isLoading) {
-        return <h1>Loading..</h1>
+        return <LoadingSpiner/>
     }
     if (!user) {
         return <Navigate to='/login' />
@@ -47,7 +48,7 @@ const EmailOtp = () => {
             });
 
             const json = await response.json();
-            console.log(json);
+            // console.log(json);
 
             if (response.ok) {
                 toast.success("Mail Send successful");
@@ -60,15 +61,15 @@ const EmailOtp = () => {
         }
     }
 
-    const onOtpSubmit = async(otp) => {
-        console.log("Verified successful with ", otp);
-        console.log("Email is:-"+emailId)
+    const onOtpSubmit = async (otp) => {
+        // console.log("Verified successful with ", otp);
+        // console.log("Email is:-"+emailId)
         setotpData(otp)
     }
-    
-    const postdata = async()=>{
+
+    const postdata = async () => {
         try {
-            console.log("In"+otpData)
+            // console.log("In"+otpData)
             const response = await fetch(`${Apipath}/api/auth/otp-verify`, {
                 method: "POST",
                 headers: {
@@ -76,17 +77,17 @@ const EmailOtp = () => {
                 },
                 body: JSON.stringify({ user_id: user._id, otp: otpData })
             });
-            console.log("In"+emailId)
+            // console.log("In"+emailId)
             const json = await response.json()
-            console.log(json)
+            // console.log(json)
 
             if (response.ok) {
                 toast.success("Mail verifeied succussfully")
             }
-            else{
+            else {
                 toast.error(json.extra_Error ? json.extra_Error : json.message)
             }
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -95,21 +96,20 @@ const EmailOtp = () => {
     return (
         <>
             <div>
-                {
-                    !showOtpField ?
-                        <form className='emailform' onSubmit={handleSubmit}>
-                            <input type='text' value={emailId} onChange={handleInput} placeholder="Enter your email" />
-                            <button type="submit">submit</button>
-                        </form>
-                        :
-                        <form>
+                {!showOtpField ?
+                    <form className='emailform' onSubmit={handleSubmit}>
+                        <input type='text' value={emailId} onChange={handleInput} placeholder="Enter your email" />
+                        <button type="submit">submit</button>
+                    </form>
+                    :
+                    <form>
 
                         <div>
                             <p className="paragraph">Enter OTP sent to <b>{emailId}</b></p>
                             <OtpInput length={6} onOtpSubmit={onOtpSubmit} />
                             <button onClick={postdata}>verify</button>
                         </div>
-                        </form>
+                    </form>
                 }
             </div>
         </>

@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../store/auth';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../Component/Navbar';
+import Footer from '../Component/Footer';
 
-const Contact = ({setProgress}) => {
+const Contact = ({ setProgress }) => {
   const navigate = useNavigate();
   const { fetchContactdata, Apipath } = useAuth()
   const [data, setData] = useState({
@@ -15,16 +16,13 @@ const Contact = ({setProgress}) => {
     message: "",
   })
 
-
-/* Change the first latter of word */
+  /* Change the first latter of word */
   const capitalize = (word) => {
     const lower = word.toLowerCase();
     return lower.charAt(0).toUpperCase() + lower.slice(1);
   }
   /* change name in title */
   document.title = `${capitalize('contact')} - React_veet`;
-
-
 
   const [userdata, setuserData] = useState(true)
   const { user } = useAuth();
@@ -34,7 +32,6 @@ const Contact = ({setProgress}) => {
       email: user.email,
       message: '',
     });
-
     setuserData(false)
   }
 
@@ -44,7 +41,7 @@ const Contact = ({setProgress}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data)
+    // console.log(data)
     try {
       const response = await fetch(`${Apipath}/api/form/contact`, {
         method: "POST",
@@ -54,27 +51,31 @@ const Contact = ({setProgress}) => {
         body: JSON.stringify({ name: data.name, email: data.email, message: data.message })
       });
       const json = await response.json()
-      console.log(json)
+      // console.log(json)
       if (response.ok) {
         navigate('/')
         fetchContactdata();
+        toast.success("Message Send successful")
       }
-      toast.success("Message Send successful")
+      else {
+        toast.error(json.extra_Error ? json.extra_Error : json.message)
+      }
     } catch (error) {
       console.log(error)
     }
   }
-  useEffect(()=>{
+
+  useEffect(() => {
     setProgress(10)
     setProgress(50)
-    setTimeout(()=>{
+    setTimeout(() => {
       setProgress(100)
-    },1500);
-  },[])
+    }, 1500);
+  }, [])
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div className="float-container">
         <div className="float-child">
           <div className="blue">
@@ -104,6 +105,7 @@ const Contact = ({setProgress}) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

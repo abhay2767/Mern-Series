@@ -2,13 +2,13 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "../store/auth"
 import { useParams } from "react-router-dom";
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
-const Admin_UserUpdate = ({setProgress}) => {
+const Admin_UserUpdate = ({ setProgress }) => {
     const navigate = useNavigate();
-    const { AuthorizationToken,Apipath } = useAuth();
+    const { AuthorizationToken, Apipath } = useAuth();
     const params = useParams();
     // console.log("what is params:-"+params)
     const [data, setdata] = useState({
@@ -16,8 +16,8 @@ const Admin_UserUpdate = ({setProgress}) => {
         email: "",
         mobile: "",
     })
-    const data1 =  JSON.stringify(data)
-    console.log("Data is:-"+data1)
+    JSON.stringify(data)
+    // console.log("Data is:-"+data1)
 
     const getSingleUserData = async () => {
         setProgress(10)
@@ -30,7 +30,7 @@ const Admin_UserUpdate = ({setProgress}) => {
             })
             const data = await response.json();
             setProgress(50)
-            console.log("Single user data:-" + data.result)
+            // console.log("Single user data:-" + data.result)
             setdata(data.result)
             setProgress(100)
         } catch (error) {
@@ -38,7 +38,14 @@ const Admin_UserUpdate = ({setProgress}) => {
         }
     }
 
-     const handleSubmit = async () => {
+    const capitalize = (word) => {
+        const lower = word.toLowerCase();
+        return lower.charAt(0).toUpperCase() + lower.slice(1);
+    }
+    /* change name in title */
+    document.title = `${capitalize('Admin/Update-user')} - React_veet`;
+
+    const handleSubmit = async () => {
         // e.preventDefault()
         try {
             const response = await fetch(`${Apipath}/api/admin/users/update/${params.id}`, {
@@ -48,21 +55,21 @@ const Admin_UserUpdate = ({setProgress}) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    name:data.name,
-                    email:data.email,
-                    mobile:data.mobile,
+                    name: data.name,
+                    email: data.email,
+                    mobile: data.mobile,
                 }),
             });
-            console.log("In")
-            const responsedata = await response.json()
-            console.log(responsedata)
+            // console.log("In")
+            await response.json()
+            // console.log(responsedata)
             toast.success("User Updated succussfully")
             navigate('/admin/users')
 
         } catch (error) {
             console.log(error)
         }
-    } 
+    }
 
     const handleInput = (e) => {
         setdata({ ...data, [e.target.name]: e.target.value })
@@ -99,7 +106,7 @@ const Admin_UserUpdate = ({setProgress}) => {
 
                             </form>
                             <div>
-                                <button type="button"  onClick={handleSubmit}  className="btn">Update</button>
+                                <button type="button" onClick={handleSubmit} className="btn">Update</button>
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,8 @@ import { PiDownloadSimpleBold } from "react-icons/pi";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Images = () => {
+// eslint-disable-next-line react/prop-types
+const Images = ({ setProgress }) => {
   const { Apipath, AuthorizationToken } = useAuth();
   const [imagedata, setImagedata] = useState([]);
   const style = { color: "white", fontSize: "2.5em", cursor: "pointer" }
@@ -16,19 +17,19 @@ const Images = () => {
     GetImages();
   }, []); // Empty dependency array to fetch images only once when component mounts
 
-
-  
-
   const GetImages = async () => {
     try {
+      setProgress(10)
       const response = await fetch(`${Apipath}/api/data/get-image`, {
         method: "GET",
         headers: {
           Authorization: AuthorizationToken
         },
       });
+      setProgress(50)
       const datas = await response.json();
       setImagedata(datas);
+      setProgress(100)
     } catch (error) {
       console.log(error);
     }
@@ -66,8 +67,12 @@ const Images = () => {
     modal.style.display = "none";
   };
 
-
-
+  const capitalize = (word) => {
+    const lower = word.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }
+  /* change name in title */
+  document.title = `${capitalize('Images')} - React_veet`;
 
   return (
     <>
@@ -76,23 +81,22 @@ const Images = () => {
           {imagedata.map((currdata, index) => {
             const { images, name } = currdata;
             return (
-              <div key={index} className='card2'>
+              <div key={index} className='card2 '>
                 {/* Ensure each image has a unique id */}
                 <div className='card1-border'>
-                <img
-                  onClick={() => handleClick(`${Apipath}/api/images/${images}`, name)}
-                  src={`${Apipath}/api/images/${images}`}
-                  alt={name}
-                  width={200}
-                  height={50}
-                />
-                <h1>{name}</h1>
+                  <img
+                    onClick={() => handleClick(`${Apipath}/api/images/${images}`, name)}
+                    src={`${Apipath}/api/images/${images}`}
+                    alt={name}
+                    width={200}
+                    height={50}
+                  />
+                  <h1>{name}</h1>
+                </div>
                 <div className="icons">
-                  <a href={`${Apipath}/api/images/${images}`} download><PiDownloadSimpleBold style={style1} /></a> 
+                  <a href={`${Apipath}/api/images/${images}`} download><PiDownloadSimpleBold style={style1} /></a>
                   <MdOutlineDeleteForever onClick={() => deleteNode(currdata._id)} style={style} />
                 </div>
-                </div>
-
               </div>
             );
           })}

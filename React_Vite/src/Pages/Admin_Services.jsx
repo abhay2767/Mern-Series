@@ -51,7 +51,7 @@ const Admin_Services = ({ setProgress }) => {
         body: formdata,
       });
       const json = await response.json()
-      console.log(json)
+      // console.log(json)
 
       if (response.ok) {
         toast.success("Services Added succussful")
@@ -63,11 +63,20 @@ const Admin_Services = ({ setProgress }) => {
         setprovider('')
         setimage('')
       }
-
+      else {
+        toast.error(json.extra_Error ? json.extra_Error : json.message)
+      }
     } catch (error) {
       console.log(error)
     }
   }
+
+  const capitalize = (word) => {
+    const lower = word.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }
+  /* change name in title */
+  document.title = `${capitalize('Admin/service')} - React_veet`;
   useEffect(() => {
     setProgress(10)
     setProgress(50)
@@ -75,6 +84,26 @@ const Admin_Services = ({ setProgress }) => {
       setProgress(100)
     }, 1500);
   }, [])
+
+
+  const deleteService = async (id) => {
+    try {
+      const response = await fetch(`${Apipath}/api/admin/services/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: AuthorizationToken,
+        },
+      });
+
+      await response.json()
+      // console.log(`User After delete${data}`)
+      fetchData()
+      toast.success("Service Deleted succussfully")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
   return (
     <>
       <div className='serv'>
@@ -82,7 +111,7 @@ const Admin_Services = ({ setProgress }) => {
 
         <form method="POST" className='serviceFoem'>
           <label htmlFor="image">Upload Image:</label>
-          <input type="file" onChange={(e) => setimage(e.target.files[0])} id="image" />
+          <input type="file" accept="image/*" onChange={(e) => setimage(e.target.files[0])} id="image" />
 
           <label htmlFor="service">Service:</label>
           <input type="text" onChange={handleInput1} id="service" value={service} />
@@ -119,6 +148,8 @@ const Admin_Services = ({ setProgress }) => {
 
               <label className="lable" htmlFor="provider">Provider:</label>
               <p className='para'>{provider}</p>
+
+              <button className='button' onClick={() => deleteService(data._id)}>Delete</button>
             </div>
           )
         })}

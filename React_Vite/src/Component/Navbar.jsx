@@ -7,13 +7,12 @@ import profile from '../Images/profile.png'
 const Navbar = () => {
     const { isLoggedIn, Apipath } = useAuth()
     const { user, isLoading } = useAuth()
-    console.log(user.images)
+    // console.log(user.images)
     const style = { color: "#00FFFF", fontSize: "1.5em" }
     const style1 = { color: "red", fontSize: "1.0em" }
 
     return (
         <>
-
             <nav className="Navbar">
                 <ul className="nav-list v-class-resp">
                     {/* <p>Wellcome <span className='name'>{isLoggedIn && user && !isLoading ? user.name : "Guest"}{isLoggedIn && user.is_verified == 1 ? <MdVerified style={style} /> : ""}<Link to='/verify-email'>{user && user.is_verified !== 1 && isLoggedIn ? <b style={style1}>(verify your account)</b> : ""}</Link></span></p> */}
@@ -46,7 +45,6 @@ const Navbar = () => {
                         </>}
                 </ul>
             </nav>
-
         </>
     )
 }

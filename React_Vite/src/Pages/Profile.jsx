@@ -14,6 +14,13 @@ const Profile = ({ setProgress }) => {
     }, 1500);
   }, [])
 
+  const capitalize = (word) => {
+    const lower = word.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }
+  /* change name in title */
+  document.title = `${capitalize('MyAccount/profile')} - React_veet`;
+
 
   if (!isLoggedIn) {
     return <Navigate to='/login' />
@@ -24,6 +31,7 @@ const Profile = ({ setProgress }) => {
   if (!user) {
     return <Navigate to='/login' />
   }
+
   return (
     <>
       <div className="container">
@@ -52,7 +60,6 @@ const Profile = ({ setProgress }) => {
               <input type="text" id="fname" value={user.mobile} name="firstname" placeholder="Your mobile.." />
             </div>
           </div>
-
         </form>
       </div>
     </>

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { home, ragister, login, user } = require('../Controller/Auth_Controller')
 const Auth_Controller = require('../Controller/Auth_Controller')
-const { signupSchema, loginSchema, emailSchema,validateOtp } = require('../Validators/Auth_Validator');
+const { signupSchema, loginSchema, emailSchema,validateOtp,updateAccountSchema } = require('../Validators/Auth_Validator');
 const validate = require('../Middleware/Validator_Middleware')
 const Auth_Middleware = require('../Middleware/Auth_Middleware');
 const bodyParser = require('body-parser')
@@ -62,6 +62,8 @@ router.route('/forget-passwordform').post(Auth_Controller.updatePassword)
 
 router.route('/otp-send').post(validate(emailSchema),Auth_Controller.OtpSend)
 router.route('/otp-verify').post(validate(validateOtp),Auth_Controller.OtVerify)
+
+router.route('/update-myAccount').patch(upload.single('images'),validate(updateAccountSchema),Auth_Middleware, Auth_Controller.updateMyAccount)
 
 
 module.exports = router;

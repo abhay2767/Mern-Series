@@ -5,6 +5,8 @@ import Navbar from '../Component/Navbar'
 import { useEffect, useState } from 'react';
 import { FaSearch } from "react-icons/fa";
 import { Navigate } from 'react-router-dom';
+import Footer from '../Component/Footer';
+import LoadingSpiner from '../Component/LoadingSpiner';
 
 const Service = ({ setProgress }) => {
   const { serviceData, Apipath, isLoggedIn, isLoading, user } = useAuth();
@@ -25,7 +27,7 @@ const Service = ({ setProgress }) => {
     return <Navigate to='/login' />
   }
   if (isLoading) {
-    return <h1>Loading..</h1>
+    return <LoadingSpiner/>
   }
   if (!user) {
     return <Navigate to='/login' />
@@ -44,15 +46,13 @@ const Service = ({ setProgress }) => {
     setsearchdata(json.service_data)
   }
 
-
-
-  
   const capitalize = (word) => {
     const lower = word.toLowerCase();
     return lower.charAt(0).toUpperCase() + lower.slice(1);
   }
   /* change name in title */
-  document.title = `${capitalize('Service')} - React_veet`;
+  document.title = `${capitalize('Services')} - React_veet`;
+
   return (
     <>
       <Navbar />
@@ -64,13 +64,11 @@ const Service = ({ setProgress }) => {
           </div>
         </div>
 
-
         {
           searchdata ? (
             searchdata && searchdata.map((currdata, index) => (
               <div key={index} className="card">
                 <img src={`${Apipath}/api/images/${currdata.images}`} alt="" height={100} width={250} />
-
 
                 <label className="lable" htmlFor="service">Service:</label>
                 <p className='para'>{currdata.service}</p>
@@ -88,8 +86,6 @@ const Service = ({ setProgress }) => {
           ) : "Data not found"
         }
       </form>
-
-
 
       <div>
         <h1>Services</h1>
@@ -114,8 +110,8 @@ const Service = ({ setProgress }) => {
           )
         })}
       </div>
+      <Footer />
     </>
-
   )
 };
 

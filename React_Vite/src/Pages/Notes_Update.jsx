@@ -2,13 +2,13 @@
 import { useState, useEffect } from "react"
 import { useAuth } from "../store/auth"
 import { useParams } from "react-router-dom";
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
-const Notes_Update = ({setProgress}) => {
+const Notes_Update = ({ setProgress }) => {
     const navigate = useNavigate();
-    const { AuthorizationToken,Apipath } = useAuth();
+    const { AuthorizationToken, Apipath } = useAuth();
     const params = useParams();
     // console.log("what is params:-"+params)
     const [data, setdata] = useState({
@@ -16,8 +16,8 @@ const Notes_Update = ({setProgress}) => {
         email: "",
         mobile: "",
     })
-    const data1 =  JSON.stringify(data)
-    console.log("Data is:-"+data1)
+    JSON.stringify(data)
+    // console.log("Data is:-"+data1)
 
     const getSingleNoteData = async () => {
         setProgress(10)
@@ -30,7 +30,7 @@ const Notes_Update = ({setProgress}) => {
             })
             const data = await response.json();
             setProgress(50)
-            console.log("Single Note data:-" + data.result)
+            // console.log("Single Note data:-" + data.result)
             setdata(data.result)
             setProgress(100)
         } catch (error) {
@@ -38,7 +38,14 @@ const Notes_Update = ({setProgress}) => {
         }
     }
 
-     const handleSubmit = async (e) => {
+    const capitalize = (word) => {
+        const lower = word.toLowerCase();
+        return lower.charAt(0).toUpperCase() + lower.slice(1);
+    }
+    /* change name in title */
+    document.title = `${capitalize('MyAccount/Notes/Update')} - React_veet`;
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             const response = await fetch(`${Apipath}/api/data/update-notes/${params.id}`, {
@@ -48,27 +55,24 @@ const Notes_Update = ({setProgress}) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    title:data.title,
-                    desc:data.desc,
-                    tag:data.tag,
+                    title: data.title,
+                    desc: data.desc,
+                    tag: data.tag,
                 }),
             });
-            console.log("In")
-            const responsedata = await response.json()
-            console.log(responsedata)
+            // console.log("In")
+            await response.json()
+            // console.log(responsedata)
             toast.success("Note Updated succussfully")
             navigate('/notes')
-
         } catch (error) {
             console.log(error)
         }
-    } 
+    }
 
     const handleInput = (e) => {
         setdata({ ...data, [e.target.name]: e.target.value })
     }
-
-
 
     useEffect(() => {
         getSingleNoteData()
@@ -84,22 +88,22 @@ const Notes_Update = ({setProgress}) => {
                             <form method="POST">
                                 <div>
                                     <label className='lable' htmlFor='title'>Title</label>
-                                    <input type="text" name="title" value={data.title} onChange={handleInput} placeholder='Enter title...'  required autoComplete='off' />
+                                    <input type="text" name="title" value={data.title} onChange={handleInput} placeholder='Enter title...' required autoComplete='off' />
                                 </div>
 
                                 <div>
                                     <label className='lable' htmlFor='desc'>Description</label>
-                                    <input type="text" name="desc" value={data.desc} onChange={handleInput} placeholder='Enter description...'  required autoComplete='off' />
+                                    <input type="text" name="desc" value={data.desc} onChange={handleInput} placeholder='Enter description...' required autoComplete='off' />
                                 </div>
 
                                 <div>
                                     <label className='lable' htmlFor='password'>Tag</label>
-                                    <input type="text" name="tag" value={data.tag} onChange={handleInput} placeholder='Enter tag...'  required autoComplete='off' />
+                                    <input type="text" name="tag" value={data.tag} onChange={handleInput} placeholder='Enter tag...' required autoComplete='off' />
                                 </div>
 
                             </form>
                             <div>
-                                <button type="button"  onClick={handleSubmit}  className="btn">Update</button>
+                                <button type="button" onClick={handleSubmit} className="btn">Update</button>
                             </div>
                         </div>
                     </div>

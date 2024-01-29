@@ -2,9 +2,8 @@
 import { useState, useRef, useEffect } from "react"
 
 const OtpInput = ({ length = 6, onOtpSubmit = () => { } }) => {
-
     const [otp, setOtp] = useState(new Array(length).fill(""));
-    console.log(otp)
+    // console.log(otp)
     const inputRefs = useRef([]);
     useEffect(() => {
         if (inputRefs.current[0]) {
@@ -27,8 +26,6 @@ const OtpInput = ({ length = 6, onOtpSubmit = () => { } }) => {
         if (value && index < length - 1 && inputRefs.current[index + 1]) {
             inputRefs.current[index + 1].focus();
         }
-
-
     };
     const handleClick = (index) => {
         inputRefs.current[index].setSelectionRange(1, 1)
@@ -44,9 +41,6 @@ const OtpInput = ({ length = 6, onOtpSubmit = () => { } }) => {
         }
     };
 
-
-
-
     return (
         <div>
             {
@@ -60,7 +54,8 @@ const OtpInput = ({ length = 6, onOtpSubmit = () => { } }) => {
                                 onChange={(e) => handleInput(index, e)}
                                 onClick={() => handleClick(index)}
                                 onKeyDown={(e) => handleKeyDown(index, e)}
-                                className="otpInput" />
+                                className="otpInput"
+                            />
                         </>
                     )
                 })

@@ -1,54 +1,69 @@
-.Navbar{
+.Navbar {
     background-color: black;
     padding: 10px;
 }
 
-ul{
+ul {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     text-decoration: none;
 }
 
-p{
+p {
     font-size: medium;
     color: white;
 }
 
-a{
+a {
     text-decoration: none;
     font-size: medium;
     color: WHITE;
     list-style: none;
 }
 
-.footer{
+.footer {
     border: 2px solid black;
     background-color: black;
 }
-.footer-heading{
+
+.footer-heading {
     padding: 10px;
     margin: 10px;
     color: white;
 }
 
-.name{
+.name {
     color: purple;
 }
 
-.profileImg{
-  vertical-align: middle;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+.profileImg {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
-.profileImg1{
-    filter:invert(1);
+.profileImg1 {
+    filter: invert(1);
     border: 5px red;
     height: 50px;
     width: 50px;
 }
 
+.footer{
+    display: flex;
+    justify-content: center;
+}
+.avatar{
+    border-radius: 50%;
+    height: 50px;
+    margin-top: 15px;
+}
 
-
+.spiner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 250px;
+}

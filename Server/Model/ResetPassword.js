@@ -10,10 +10,6 @@ const resetePasswordSchema = new mongoose.Schema({
     },
 })
 
-
-
-
-
 //define the model or the collection name
 const resetepass = new mongoose.model('ResetPassword',resetePasswordSchema);
 

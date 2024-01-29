@@ -5,19 +5,16 @@ import Notes_Update from "./Pages/Notes_Update"
 import Images from "./Pages/Images"
 import Documents from "./Pages/Documents"
 
-
 import Contact from "./Pages/Contact"
 import Service from "./Pages/Service"
 import Signup from "./Pages/Signup"
 import Login from "./Pages/Login"
-import Footer from "./Component/Footer"
 import Error from "./Pages/Error"
 import Logout from "./Pages/Logout"
 
 import MyAccount from "./Pages/MyAccount"
 import Profile from "./Pages/Profile"
 import Update from "./Pages/Update"
-import Account from "./Pages/Account"
 
 import Reset_Password from "./Pages/Reset_Password"
 import Verify_Email from "./Pages/Verify_Email"
@@ -41,7 +38,6 @@ const App = () => {
       onLoaderFinished={() => setProgress(0)}
     />
 
-
     <Routes>
       <Route path='/' element={<Home setProgress={setProgress} />} >
         <Route path='notes' element={<Notes setProgress={setProgress} />} />
@@ -59,10 +55,7 @@ const App = () => {
       <Route path='/myAccount' element={<MyAccount setProgress={setProgress} />} >
         <Route path='profile' element={<Profile setProgress={setProgress} />} />
         <Route path='update' element={<Update setProgress={setProgress} />} />
-        <Route path='account' element={<Account setProgress={setProgress} />} />
       </Route>
-
-
 
       <Route path='/reset-password' element={<Reset_Password setProgress={setProgress} />} />
       <Route path='/verify-email' element={<Verify_Email setProgress={setProgress} />} />
@@ -77,7 +70,7 @@ const App = () => {
       </Route>
 
     </Routes>
-    <Footer />
+
   </>
 }
 

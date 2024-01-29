@@ -19,7 +19,6 @@ const otpSchema = new mongoose.Schema({
     }
 });
 
-
 //define the model or the collection name
 const OTP = new mongoose.model('otpMail',otpSchema);
 

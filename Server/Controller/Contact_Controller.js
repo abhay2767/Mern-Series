@@ -1,14 +1,11 @@
 const ContactFromModel = require('../Model/Contact_Model');
 
-
-const contactform = async (req,res)=>{
+const contactform = async (req, res) => {
     try {
-        const {name, email, message} = req.body;
-
+        const { name, email, message } = req.body;
         const data = await ContactFromModel.create({
-            name,email,message
+            name, email, message
         })
-
         res.status(201).json({
             message: "Data inserted",
             data

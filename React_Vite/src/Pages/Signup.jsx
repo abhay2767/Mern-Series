@@ -1,15 +1,17 @@
 /* eslint-disable react/prop-types */
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../Component/Navbar'
+import Footer from "../Component/Footer";
 import { Navigate } from 'react-router-dom';
+import LoadingSpiner from "../Component/LoadingSpiner";
 
-const Signup = ({setProgress}) => {
+const Signup = ({ setProgress }) => {
   const navigate = useNavigate();
-  const { storeTokenInLs, Apipath,isLoggedIn,isLoading,user } = useAuth();
+  const { storeTokenInLs, Apipath, isLoggedIn, isLoading } = useAuth();
 
   /* const [user, setUser] = useState({
     name: "",
@@ -25,25 +27,29 @@ const Signup = ({setProgress}) => {
   const [mobile, setmobile] = useState('')
   const [password, setpassword] = useState('')
   const [image, setimage] = useState('')
-  
+
   const handleInput1 = (e) => {
-    setname(e.target.value )
+    setname(e.target.value)
   }
   const handleInput2 = (e) => {
-    setemail(e.target.value )
+    setemail(e.target.value)
   }
   const handleInput3 = (e) => {
-    setmobile(e.target.value )
+    setmobile(e.target.value)
   }
   const handleInput4 = (e) => {
-    setpassword( e.target.value )
+    setpassword(e.target.value)
   }
-  
 
+  const capitalize = (word) => {
+    const lower = word.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }
+  /* change name in title */
+  document.title = `${capitalize('Signup')} - React_veet`;
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
     try {
       const formdata = new FormData
       formdata.append('name', name)
@@ -53,11 +59,10 @@ const Signup = ({setProgress}) => {
       formdata.append('images', image)
       const response = await fetch(`${Apipath}/api/auth/ragister`, {
         method: "POST",
-        
         body: formdata,
       });
       const json = await response.json()
-      console.log(json)
+      // console.log(json)
 
       if (response.ok) {
         toast.success("Ragistration succussful")
@@ -69,28 +74,26 @@ const Signup = ({setProgress}) => {
       // console.log(json.token)
       // localStorage.setItem("Token", json.token);
       storeTokenInLs(json.token)
-
     } catch (error) {
       console.log(error)
     }
   }
-  useEffect(()=>{
+
+  useEffect(() => {
     setProgress(10)
     setProgress(50)
-    setTimeout(()=>{
+    setTimeout(() => {
       setProgress(100)
-    },1500);
-  },[])
+    }, 1500);
+  }, [])
 
   if (isLoggedIn) {
     return <Navigate to='/' />
   }
   if (isLoading) {
-    return <h1>Loading..</h1>
+    return <LoadingSpiner/>
   }
-  if (!user) {
-    return <Navigate to='/login' />
-  }
+ 
 
   return (
     <>
@@ -103,24 +106,24 @@ const Signup = ({setProgress}) => {
               <form method="POST">
                 <div>
                   <label className='lable' htmlFor='name'>Name</label>
-                  <input type="text" name="name" value={name}  onChange={handleInput1} placeholder='Enter your name' id="name" required autoComplete='off' />
+                  <input type="text" name="name" value={name} onChange={handleInput1} placeholder='Enter your name' id="name" required autoComplete='off' />
                 </div>
                 <div>
                   <label className='lable' htmlFor='email'>Email</label>
-                  <input type="text" name="email" value={email}  onChange={handleInput2} placeholder='Enter your email' id="email" required autoComplete='off' />
+                  <input type="text" name="email" value={email} onChange={handleInput2} placeholder='Enter your email' id="email" required autoComplete='off' />
                 </div>
                 <div>
                   <label className='lable' htmlFor='number'>Mobile</label>
-                  <input type="text" name="mobile" value={mobile}  onChange={handleInput3} placeholder='Enter your phone number' id="mobile" required autoComplete='off' />
+                  <input type="text" name="mobile" value={mobile} onChange={handleInput3} placeholder='Enter your phone number' id="mobile" required autoComplete='off' />
                 </div>
                 <div>
                   <label className='lable' htmlFor='password'>Password</label>
-                  <input type="password" name="password" value={password}  onChange={handleInput4} placeholder='Enter your password' id="password" required autoComplete='off' />
+                  <input type="password" name="password" value={password} onChange={handleInput4} placeholder='Enter your password' id="password" required autoComplete='off' />
                 </div>
 
                 <div>
                   <label className='lable' htmlFor='image'>Upload Image</label>
-                  <input type="file" name="image" onChange={(e)=> setimage(e.target.files[0])} placeholder='Upload your image' required autoComplete='off' />
+                  <input type="file" accept="image/*" name="image" onChange={(e) => setimage(e.target.files[0])} placeholder='Upload your image' required autoComplete='off' />
                 </div>
 
               </form>
@@ -131,6 +134,7 @@ const Signup = ({setProgress}) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

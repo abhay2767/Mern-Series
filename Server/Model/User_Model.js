@@ -45,7 +45,6 @@ userSchema.pre('save',async function(next){
     }
 })
 
-
 //secand way to Compare the password
 userSchema.methods.compare_Pass = async function(password){
     return  bcrypt.compare(password,this.password)
@@ -68,7 +67,6 @@ userSchema.methods.generateToken = function(){
         console.log('messag'+error)
     }
 }
-
 
 //define the model or the collection name
 const User = new mongoose.model('Ragistration',userSchema);

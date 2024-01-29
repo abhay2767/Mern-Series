@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
     // const Apipath = import.meta.env.Server_Address || "http://ec2-13-201-42-144.ap-south-1.compute.amazonaws.com:8000";
     const Apipath = "http://localhost:5000"
-    console.log(Apipath)
+    // console.log(Apipath)
     const fetchData = async () => {
         try {
             const response = await fetch(`${Apipath}/api/service/servicedata`, {
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 const data = await response.json();
                 setServiceData(data.response);
-                console.log(data.response)
+                // console.log(data.response)
             }
             else {
                 console.error("Error while fetching data")
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 const data = await response.json();
                 setContactdata(data);
-                console.log(data.contacts)
+                // console.log(data.contacts)
             }
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -56,7 +56,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     let isLoggedIn = !!token;
-    console.log(isLoggedIn)
+    // console.log(isLoggedIn)
 
     const LogoutUser = () => {
         settoken("");
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 const data = await response.json();
                 setuser(data.userData)
-                console.log(data.userData)
+                // console.log(data.userData)
                 setIsLoading(false)
             }
             else {

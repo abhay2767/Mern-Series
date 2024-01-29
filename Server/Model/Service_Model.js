@@ -1,6 +1,5 @@
 const {Schema, model} = require("mongoose")
 
-
 const serviceSchema = new Schema({
     service:{
         type: String,
@@ -25,4 +24,5 @@ const serviceSchema = new Schema({
 })
 
 const Service = new model("Service",serviceSchema);
+
 module.exports = Service;

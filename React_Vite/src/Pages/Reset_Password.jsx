@@ -1,14 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from "../store/auth";
 import Navbar from '../Component/Navbar'
+import Footer from "../Component/Footer";
 import { Navigate } from 'react-router-dom';
 
-const Reset_Password = ({setProgress}) => {
-  const {Apipath,isLoggedIn,isLoading} = useAuth();
+const Reset_Password = ({ setProgress }) => {
+  const { Apipath, isLoggedIn, isLoading } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -20,7 +21,7 @@ const Reset_Password = ({setProgress}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(user)
+    // console.log(user)
     try {
       const response = await fetch(`${Apipath}/api/auth/reset-password`, {
         method: "POST",
@@ -30,7 +31,7 @@ const Reset_Password = ({setProgress}) => {
         body: JSON.stringify({ email: user.email })
       });
       const json = await response.json()
-      console.log(json)
+      // console.log(json)
 
       if (response.ok) {
         toast.success("Mail Send succussful")
@@ -43,13 +44,15 @@ const Reset_Password = ({setProgress}) => {
       console.log(error)
     }
   }
-  useEffect(()=>{
+
+  useEffect(() => {
     setProgress(10)
     setProgress(50)
-    setTimeout(()=>{
+    setTimeout(() => {
       setProgress(100)
-    },1500);
-  },[])
+    }, 1500);
+  }, [])
+
   if (isLoggedIn) {
     return <Navigate to='/' />
   }
@@ -57,22 +60,26 @@ const Reset_Password = ({setProgress}) => {
     return <h1>Loading..</h1>
   }
 
+  const capitalize = (word) => {
+    const lower = word.toLowerCase();
+    return lower.charAt(0).toUpperCase() + lower.slice(1);
+  }
+  /* change name in title */
+  document.title = `${capitalize('Reset-Password')} - React_veet`;
+
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <div className="float-container">
         <div className="float-child">
           <div className="blue">
             <div className="ragistration-form">
               <h1 className='main-heading '>Reset Password</h1>
               <form method="POST">
-
                 <div>
                   <label className='lable' htmlFor='email'>Email</label>
                   <input type="text" name="email" onChange={handleInput} placeholder='Enter your email' id="email" required autoComplete='off' />
                 </div>
-
-
               </form>
               <div>
                 <button type="button" onClick={handleSubmit} className="btn">SUBMIT</button>
@@ -81,6 +88,7 @@ const Reset_Password = ({setProgress}) => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

@@ -8,6 +8,8 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navigate } from 'react-router-dom';
+import Footer from '../Component/Footer'
+import LoadingSpiner from '../Component/LoadingSpiner'
 
 const Home = ({ setProgress }) => {
   const { userAuthentication, Apipath, AuthorizationToken, isLoggedIn, isLoading, user } = useAuth()
@@ -19,18 +21,15 @@ const Home = ({ setProgress }) => {
     }, 1500);
   }, [])
 
-
-
   /* Change the first latter of word */
   const capitalize = (word) => {
     const lower = word.toLowerCase();
     return lower.charAt(0).toUpperCase() + lower.slice(1);
   }
   /* change name in title */
-  document.title = `${capitalize('Home')} - React_veet`;
+  document.title = `${capitalize('Upload-data')} - React_veet`;
 
   let location = useLocation();
-
 
   /* API for upload Notes */
   const [data, setData] = useState({
@@ -73,7 +72,6 @@ const Home = ({ setProgress }) => {
     }
   }
 
-
   /* Api for Image Upload */
   const [name, setname] = useState('')
   const [image, setimage] = useState('')
@@ -82,7 +80,6 @@ const Home = ({ setProgress }) => {
   }
   const handleSubmit2 = async (e) => {
     e.preventDefault()
-
     try {
       const formdata = new FormData
       formdata.append('name', name)
@@ -95,7 +92,7 @@ const Home = ({ setProgress }) => {
         body: formdata,
       });
       const json = await response.json()
-      console.log(json)
+      // console.log(json)
 
       if (response.ok) {
         toast.success("Image Uploaded")
@@ -105,12 +102,10 @@ const Home = ({ setProgress }) => {
       else {
         toast.error(json.extra_Error ? json.extra_Error : json.message)
       }
-
     } catch (error) {
       console.log(error)
     }
   }
-
 
   /* Api for Document Upload*/
   const [name1, setname1] = useState('')
@@ -133,8 +128,7 @@ const Home = ({ setProgress }) => {
         body: formdata,
       });
       const json = await response.json()
-      console.log(json)
-
+      // console.log(json)
       if (response.ok) {
         toast.success("Document Uploaded")
         setname1('')
@@ -143,7 +137,6 @@ const Home = ({ setProgress }) => {
       else {
         toast.error(json.extra_Error ? json.extra_Error : json.message)
       }
-
     } catch (error) {
       console.log(error)
     }
@@ -152,12 +145,11 @@ const Home = ({ setProgress }) => {
     return <Navigate to='/login' />
   }
   if (isLoading) {
-    return <h1>Loading..</h1>
+    return <LoadingSpiner />
   }
   if (!user) {
     return <Navigate to='/login' />
   }
-
 
   return (
     <>
@@ -204,8 +196,8 @@ const Home = ({ setProgress }) => {
           </div>
         </div>
 
-
       </div> : <Outlet />}
+      <Footer />
     </>
   )
 }

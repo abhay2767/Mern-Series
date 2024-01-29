@@ -18,6 +18,7 @@ const noteSchema = new mongoose.Schema({
         default:'General'
     }
 })
+
 const Notes = new mongoose.model('notes',noteSchema);
 
 module.exports = Notes
