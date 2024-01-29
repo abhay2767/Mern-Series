@@ -74,7 +74,7 @@ const Documents = ({ setProgress }) => {
                     < iframe src="http://docs.google.com/gview?url=https://link_to_file.pdf&embedded=true" frameborder="0" id="myiframe" style="height:100%; width:100%;"> 
             */}
               {/* http://ec2-13-201-42-144.ap-south-1.compute.amazonaws.com:8000/api/images/1706438049390-download.pdf */}
-              < iframe src={`https://docs.google.com/gview?url=http://ec2-13-201-42-144.ap-south-1.compute.amazonaws.com:8000/api/images/1706438049390-download.pdf&embedded=true`} id="myiframe" />
+              < iframe src={`https://docs.google.com/gview?url=${Apipath}/api/images/${doc}&embedded=true`} id="myiframe" />
               <h2>{name}</h2>
               <div className="icons">
                 <a href={`https://docs.google.com/gview?url=${Apipath}/api/images/${doc}&embedded=true`} download><PiDownloadSimpleBold style={style1} /></a>
