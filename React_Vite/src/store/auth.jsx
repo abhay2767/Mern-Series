@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(true);
     const AuthorizationToken = `Bearer ${token}`;
 
-    const Apipath = import.meta.env.Server_Address || "http://ec2-13-201-42-144.ap-south-1.compute.amazonaws.com:8000";
+     const Apipath = "http://ec2-13-201-42-144.ap-south-1.compute.amazonaws.com:8000" || import.meta.env.Server_Address ;
     // const Apipath = "http://localhost:5000"
     // console.log(Apipath)
     const fetchData = async () => {

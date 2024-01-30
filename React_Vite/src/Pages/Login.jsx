@@ -70,7 +70,7 @@ const Login = ({ setProgress }) => {
   }
   if (isLoading) {
     return <LoadingSpiner/>
-  } 
+  }
 
   return (
     <>

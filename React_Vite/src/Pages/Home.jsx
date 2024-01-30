@@ -15,7 +15,7 @@ import '../Component/Navbar.css'
 const Home = ({ setProgress }) => {
 
 
-  const { userAuthentication, Apipath, AuthorizationToken , isLoggedIn, isLoading,user} = useAuth()
+  const { userAuthentication, Apipath, AuthorizationToken  , isLoggedIn, isLoading,user } = useAuth()
   useEffect(() => {
     setProgress(10)
     userAuthentication()
@@ -144,7 +144,7 @@ const Home = ({ setProgress }) => {
       console.log(error)
     }
   }
-   if (!isLoggedIn) {
+    if (!isLoggedIn) {
     return <Navigate to='/login' />
   }
   if (isLoading) {
@@ -152,7 +152,7 @@ const Home = ({ setProgress }) => {
   }
   if (!user) {
     return <Navigate to='/login' />
-  } 
+  }  
 
 
   return (
