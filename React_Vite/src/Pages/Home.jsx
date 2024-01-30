@@ -7,15 +7,15 @@ import { useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import Footer from '../Component/Footer'
-import LoadingSpiner from '../Component/LoadingSpiner'
+// import LoadingSpiner from '../Component/LoadingSpiner'
 import '../Component/Navbar.css'
 
 const Home = ({ setProgress }) => {
 
 
-  const { userAuthentication, Apipath, AuthorizationToken , isLoggedIn, isLoading,user} = useAuth()
+  const { userAuthentication, Apipath, AuthorizationToken /* , isLoggedIn, isLoading,user */} = useAuth()
   useEffect(() => {
     setProgress(10)
     userAuthentication()
@@ -144,7 +144,7 @@ const Home = ({ setProgress }) => {
       console.log(error)
     }
   }
-   if (!isLoggedIn) {
+   /* if (!isLoggedIn) {
     return <Navigate to='/login' />
   }
   if (isLoading) {
@@ -152,7 +152,7 @@ const Home = ({ setProgress }) => {
   }
   if (!user) {
     return <Navigate to='/login' />
-  } 
+  }  */
 
 
   return (
