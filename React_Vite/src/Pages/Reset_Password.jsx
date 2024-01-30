@@ -7,6 +7,7 @@ import { useAuth } from "../store/auth";
 import Navbar from '../Component/Navbar'
 import Footer from "../Component/Footer";
 import { Navigate } from 'react-router-dom';
+import LoadingSpiner from "../Component/LoadingSpiner";
 
 const Reset_Password = ({ setProgress }) => {
   const { Apipath, isLoggedIn, isLoading } = useAuth();
@@ -57,7 +58,7 @@ const Reset_Password = ({ setProgress }) => {
     return <Navigate to='/' />
   }
   if (isLoading) {
-    return <h1>Loading..</h1>
+    return <LoadingSpiner/>
   }
 
   const capitalize = (word) => {
