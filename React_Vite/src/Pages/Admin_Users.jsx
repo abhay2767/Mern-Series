@@ -85,7 +85,7 @@ const Admin_Users = ({ setProgress }) => {
                                             <td>{curUsers.name}</td>
                                             <td>{curUsers.email}</td>
                                             <td>{curUsers.mobile}</td>
-                                            <td><button className="btn"><Link to={`/admin/users/${curUsers._id}/edit`}>Edit</Link></button></td>
+                                            <td><Link to={`/admin/users/${curUsers._id}/edit`}><button className="btn">Edit</button></Link></td>
                                             <td><button className="btn" onClick={() => deleteUser(curUsers._id)}>Delete</button></td>
                                         </tr>
                                     )

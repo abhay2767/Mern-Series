@@ -1,8 +1,5 @@
 /* eslint-disable react/prop-types */
 import { Link, Outlet } from 'react-router-dom';
-import { PiUsersThreeFill } from "react-icons/pi";
-import { TbMessages } from "react-icons/tb";
-import { MdHomeRepairService } from "react-icons/md";
 import { useAuth } from '../../store/auth';
 import { Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
@@ -10,6 +7,7 @@ import { useEffect } from 'react';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import LoadingSpiner from '../LoadingSpiner';
+import '../Navbar.css'
 
 const Admin_Layout = ({ setProgress }) => {
     const { user, isLoading, isLoggedIn } = useAuth();
@@ -36,22 +34,25 @@ const Admin_Layout = ({ setProgress }) => {
         return <Navigate to='/login' />
     }
     if (isLoading) {
-        return <LoadingSpiner/>
+        return <LoadingSpiner />
     }
     if (!user.isAdmin) {
         return <Navigate to='/' />
     }
 
+
     return (
         <>
             <Navbar />
-            <nav className="Navbar">
-                <ul className="nav-list v-class-resp">
-                    <Link to="/admin/users"><li><PiUsersThreeFill />Users</li></Link>
-                    <Link to="/admin/contacts"><li><TbMessages />Contacts</li></Link>
-                    <Link to="/admin/servicepage"><li><MdHomeRepairService />Services</li></Link>
-                </ul>
-            </nav>
+            <div id="header">
+                <div className="container">
+                    <nav className="data-design">
+                        <a><Link to="/admin/users" className='data'>Users</Link></a>
+                        <a><Link to='/admin/contacts' className='data'>Contacts</Link></a>
+                        <a><Link to='/admin/servicepage' className='data'>Services</Link></a>
+                    </nav>
+                </div>
+            </div>
             {location.pathname === "/admin" ? <div className='bg1'></div> : <Outlet />}{/*<Outlet /> It is used when you use nested route so here thats the reason we have use this feature of React Router Dom */}
             <Footer />
         </>

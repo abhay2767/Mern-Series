@@ -37,6 +37,8 @@ img {
 /* Admin User Cntrol */
 .admin-users-section {
   padding: 20px;
+  height: 80vh;
+  overflow: auto;
 }
 
 .admin-users-section .container h1 {
@@ -459,7 +461,7 @@ form {
 /* Admin Page */
 .bg1 {
   background-image: url("../Images/phos.jpg");
-  height: 65vh;
+  height: 80vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -487,6 +489,10 @@ form {
   margin-top: 40px;
 }
 
+
+.profile-height{
+  height: 70vh;
+}
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
 

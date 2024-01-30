@@ -10,8 +10,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Navigate } from 'react-router-dom';
 import Footer from '../Component/Footer'
 import LoadingSpiner from '../Component/LoadingSpiner'
+import '../Component/Navbar.css'
 
 const Home = ({ setProgress }) => {
+
+
   const { userAuthentication, Apipath, AuthorizationToken, isLoggedIn, isLoading, user } = useAuth()
   useEffect(() => {
     setProgress(10)
@@ -151,16 +154,20 @@ const Home = ({ setProgress }) => {
     return <Navigate to='/login' />
   }
 
+
   return (
     <>
       <Navbar />
-      <nav className="Navbar">
-        <ul className="nav-list v-class-resp">
-          <Link to="/notes"><li>Notes</li></Link>
-          <Link to="/images"><li>Images</li></Link>
-          <Link to="/documents"><li>Documents</li></Link>
-        </ul>
-      </nav>
+
+      <div id="header">
+        <div className="container">
+          <nav className="data-design">
+            <a><Link to="/notes" className='data'>Notes</Link></a>
+            <a><Link to='/images' className='data'>Images</Link></a>
+            <a><Link to='/documents' className='data'>Documents</Link></a>
+          </nav>
+        </div>
+      </div>
 
       {location.pathname === "/" ? <div className='bg'>
         <div className='images3'>

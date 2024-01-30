@@ -73,7 +73,7 @@ const Update = ({ setProgress }) => {
 
   return (
     <>
-      <div className="float-container">
+      <div className="float-container ">
         <div className="float-child">
           <div className="blue">
             <div className="ragistration-form">

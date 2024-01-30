@@ -1,69 +1,180 @@
-.Navbar {
-    background-color: black;
-    padding: 10px;
+.profileImg1 {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
 }
 
-ul {
+.profileImg {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+nav {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
-    text-decoration: none;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: black;
 }
 
-p {
-    font-size: medium;
+.logo {
+    width: 140px;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    width: 0%;
+    height: 3px;
+    background: cyan;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav .fa {
+    display: none;
+}
+
+.fa {
     color: white;
 }
 
-a {
-    text-decoration: none;
-    font-size: medium;
-    color: WHITE;
-    list-style: none;
+
+.copyright {
+    width: 100%;
+    text-align: center;
+    background: black;
+    font-weight: 300;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
-.footer {
-    border: 2px solid black;
-    background-color: black;
+.copyright img {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
 }
 
 .footer-heading {
-    padding: 10px;
-    margin: 10px;
     color: white;
+}
+
+.spiner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 230px;
+}
+
+.username {
+    color: white;
+    font-size: 15px;
 }
 
 .name {
     color: purple;
 }
 
-.profileImg {
-    vertical-align: middle;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+.admin-content {
+    margin-left: 70px;
 }
 
-.profileImg1 {
-    filter: invert(1);
-    border: 5px red;
-    height: 50px;
-    width: 50px;
+/* Admin and Home Navbar */
+.data {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 10px;
+    margin: 0 10px;
 }
 
-.footer{
+.data-design {
     display: flex;
-    justify-content: center;
-}
-.avatar{
-    border-radius: 50%;
-    height: 50px;
-    margin-top: 15px;
+    justify-content: space-around;
 }
 
-.spiner{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 250px;
+.data-design a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+  a .data::after {
+    content: '';
+    width: 0%;
+    height: 3px;
+    background: cyan;
+    position: absolute;
+    left: 0;
+    bottom: 6px;
+    transition: 0.5s;
+}
+
+a .data:hover::after {
+    width: 100%;
+}
+
+
+@media only screen and (max-width:600px) {
+
+    nav .fa {
+        display: block;
+        font-size: 25px;
+    }
+
+    nav ul {
+        background: black;
+        position: fixed;
+        top: 0;
+        right: -200px;
+        width: 200px;
+        height: 100vh;
+        padding-top: 50px;
+        z-index: 2;
+        transition: right 0.5s;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 25px;
+    }
+
+    nav ul .fa {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        cursor: pointer;
+    }
+
+    .copyright h1 {
+        font-size: 14px;
+    }
+
+    .verfy-account {
+        display: flex;
+        text-decoration: none;
+    }
 }

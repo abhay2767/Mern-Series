@@ -6,6 +6,7 @@ import { Link, Outlet } from "react-router-dom"
 import { Navigate } from 'react-router-dom';
 import { useAuth } from "../store/auth";
 import LoadingSpiner from "../Component/LoadingSpiner";
+import '../Component/Navbar.css'
 
 const MyAccount = () => {
     const { user, isLoggedIn, isLoading } = useAuth();
@@ -29,12 +30,14 @@ const MyAccount = () => {
     return (
         <>
             <Navbar />
-            <nav className="Navbar">
-                <ul className="nav-list v-class-resp">
-                    <Link to="/myAccount/profile"><li>Profile</li></Link>
-                    <Link to="/myAccount/update"><li>Update-Profile</li></Link>
-                </ul>
-            </nav>
+            <div id="header">
+                <div className="container">
+                    <nav className="data-design">
+                        <a><Link to="/myAccount/profile" className='data'>Profile</Link></a>
+                        <a><Link to='/myAccount/update' className='data'>Update-Profile</Link></a>
+                    </nav>
+                </div>
+            </div>
 
             <Outlet />
             <Footer />

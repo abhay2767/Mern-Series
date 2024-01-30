@@ -35,7 +35,7 @@ const Profile = ({ setProgress }) => {
   return (
     <>
       <div className="container">
-        <form >
+        <form className="profile-height">
           <div className="account">
             <img className="user" src={`${Apipath}/api/images/${user.images}`} alt="" />
           </div>
