@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     // console.log(Apipath)
     const fetchData = async () => {
         try {
-            const response = await fetch(`${Apipath}/api/service/servicedata`, {
+            const response = await fetch(`http://ec2-13-201-42-144.ap-south-1.compute.amazonaws.com:8000/api/service/servicedata`, {
                 method: "GET",
             });
             if (response.ok) {

@@ -35,7 +35,7 @@ const Service = ({ setProgress }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const response = await fetch(`http://ec2-13-201-42-144.ap-south-1.compute.amazonaws.com:8000/api/service/servicedata/search`, {
+    const response = await fetch(`${Apipath}/api/service/servicedata/search`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
