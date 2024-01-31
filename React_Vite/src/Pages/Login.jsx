@@ -25,7 +25,7 @@ const Login = ({ setProgress }) => {
     e.preventDefault();
     // console.log(user)
     try {
-      const response = await fetch(`${Apipath}/api/auth/login`, {
+      const response = await fetch(`http://ec2-13-201-42-144.ap-south-1.compute.amazonaws.com:8000/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
