@@ -4,12 +4,12 @@ import './Design.css'
 import Navbar from '../Component/Navbar'
 import { useEffect, useState } from 'react';
 import { FaSearch } from "react-icons/fa";
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import Footer from '../Component/Footer';
-import LoadingSpiner from '../Component/LoadingSpiner';
+// import LoadingSpiner from '../Component/LoadingSpiner';
 
 const Service = ({ setProgress }) => {
-  const { serviceData, Apipath, isLoggedIn, isLoading, user } = useAuth();
+  const { serviceData, Apipath/* , isLoggedIn, isLoading, user  */} = useAuth();
   console.log(serviceData)
   const [SData, setSData] = useState('')
   const [searchdata, setsearchdata] = useState('')
@@ -23,7 +23,7 @@ const Service = ({ setProgress }) => {
   }, [])
 
 
-  if (!isLoggedIn) {
+  /* if (!isLoggedIn) {
     return <Navigate to='/login' />
   }
   if (isLoading) {
@@ -31,7 +31,7 @@ const Service = ({ setProgress }) => {
   }
   if (!user) {
     return <Navigate to='/login' />
-  }
+  } */
 
   const handleSubmit = async (e) => {
     e.preventDefault()

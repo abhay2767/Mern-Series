@@ -6,12 +6,12 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../Component/Navbar'
 import Footer from "../Component/Footer";
-import { Navigate } from 'react-router-dom';
-import LoadingSpiner from "../Component/LoadingSpiner";
+// import { Navigate } from 'react-router-dom';
+// import LoadingSpiner from "../Component/LoadingSpiner";
 
 const Signup = ({ setProgress }) => {
   const navigate = useNavigate();
-  const { storeTokenInLs, Apipath, isLoggedIn, isLoading } = useAuth();
+  const { storeTokenInLs, Apipath/* , isLoggedIn, isLoading */ } = useAuth();
 
   /* const [user, setUser] = useState({
     name: "",
@@ -87,12 +87,12 @@ const Signup = ({ setProgress }) => {
     }, 1500);
   }, [])
 
-  if (isLoggedIn) {
+  /* if (isLoggedIn) {
     return <Navigate to='/' />
   }
   if (isLoading) {
     return <LoadingSpiner/>
-  }
+  } */
  
 
   return (
