@@ -81,6 +81,9 @@ const Home = ({ setProgress }) => {
   const handleInput1 = (e) => {
     setname(e.target.value)
   }
+  const alert = ()=>{
+    toast.success("Image Uploaded")
+  }
   const handleSubmit2 = async (e) => {
     e.preventDefault()
     try {
@@ -97,9 +100,7 @@ const Home = ({ setProgress }) => {
       const json = await response.json()
       // console.log(json)
 
-      const alert = ()=>{
-        toast.success("Image Uploaded")
-      }
+      
 
       if (response.ok) {
         toast.success("Image Uploaded")
