@@ -97,6 +97,10 @@ const Home = ({ setProgress }) => {
       const json = await response.json()
       // console.log(json)
 
+      const alert = ()=>{
+        toast.success("Image Uploaded")
+      }
+
       if (response.ok) {
         toast.success("Image Uploaded")
         setname('')
@@ -158,7 +162,7 @@ const Home = ({ setProgress }) => {
   return (
     <>
       <Navbar />
-
+<button onClick={alert}>Click on me</button>
       <div id="header">
         <div className="container">
           <nav className="data-design">
