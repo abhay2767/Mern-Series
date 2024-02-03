@@ -57,6 +57,10 @@ const Signup = ({ setProgress }) => {
       formdata.append('mobile', mobile)
       formdata.append('password', password)
       formdata.append('images', image)
+
+      if (isNaN(mobile)) {
+        toast.error("Please enter a valid Mobile number");
+      }
       const response = await fetch(`${Apipath}/api/auth/ragister`, {
         method: "POST",
         body: formdata,
