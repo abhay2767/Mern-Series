@@ -60,13 +60,13 @@ const Signup = ({ setProgress }) => {
 
       if (isNaN(mobile)) {
         toast.error("Please enter a valid Mobile number");
-      }
-      const response = await fetch(`${Apipath}/api/auth/ragister`, {
-        method: "POST",
-        body: formdata,
-      });
-      const json = await response.json()
-      // console.log(json)
+      }else{
+        const response = await fetch(`${Apipath}/api/auth/ragister`, {
+          method: "POST",
+          body: formdata,
+        });
+        const json = await response.json()
+        // console.log(json)
 
       if (response.ok) {
         toast.success("Ragistration succussful")
@@ -78,6 +78,8 @@ const Signup = ({ setProgress }) => {
       // console.log(json.token)
       // localStorage.setItem("Token", json.token);
       storeTokenInLs(json.token)
+      }
+      
     } catch (error) {
       console.log(error)
     }
