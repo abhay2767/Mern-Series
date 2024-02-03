@@ -60,7 +60,7 @@ const Signup = ({ setProgress }) => {
 
       if (isNaN(mobile)) {
         toast.error("Please enter a valid Mobile number");
-      }else{
+      } else {
         const response = await fetch(`${Apipath}/api/auth/ragister`, {
           method: "POST",
           body: formdata,
@@ -68,18 +68,19 @@ const Signup = ({ setProgress }) => {
         const json = await response.json()
         // console.log(json)
 
-      if (response.ok) {
-        toast.success("Ragistration succussful")
-        navigate('/')
+        if (response.ok) {
+          toast.success("Ragistration succussful")
+          navigate('/')
+          // console.log(json.token)
+          // localStorage.setItem("Token", json.token);
+          storeTokenInLs(json.token)
+        }
+        else {
+          toast.error(json.extra_Error ? json.extra_Error : json.message)
+        }
+
       }
-      else {
-        toast.error(json.extra_Error ? json.extra_Error : json.message)
-      }
-      // console.log(json.token)
-      // localStorage.setItem("Token", json.token);
-      storeTokenInLs(json.token)
-      }
-      
+
     } catch (error) {
       console.log(error)
     }
@@ -97,9 +98,9 @@ const Signup = ({ setProgress }) => {
     return <Navigate to='/' />
   }
   if (isLoading) {
-    return <LoadingSpiner/>
+    return <LoadingSpiner />
   }
- 
+
 
   return (
     <>
